@@ -25,6 +25,7 @@
         </span>
         <a href="https://homogenization.microprediction.org/">Mathematics</a>
         <a href="https://github.com/microprediction/regimelib">GitHub</a>
+        <a href="https://pypi.org/project/regimelib/">PyPI</a>
       </nav>
     </div>
   </header>
@@ -35,7 +36,7 @@
     <p class="lead">A regime is a finite-state chain the market does not observe: a volatility level, a mean rate, a default intensity that is sometimes high and sometimes low. Any parameter of a standard model may take a different value in each regime. The libraries here price the usual instruments under such models, in QuantLib's mold, with a referee behind every number.</p>
 
     <h2>Quick start</h2>
-<pre><code>pip install git+https://github.com/microprediction/regimelib
+<pre><code>pip install regimelib
 
 import regimelib as rl
 chain  = rl.RegimeChain.twoState(3.0, 5.0)                       # switching rates out of each regime
