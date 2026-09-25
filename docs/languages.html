@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>regimeswitching — languages</title>
+  <meta name="description" content="The reference implementation and the ports, with the parity suite that keeps them identical." />
+  <link rel="stylesheet" href="/academic.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="nav-inner">
+      <a class="brand" href="/">regimeswitching</a>
+      <nav>
+        <a href="/">Home</a>
+        <a href="/languages.html">Languages</a>
+        <span class="menu" tabindex="0"><span class="menu-label">Docs &#9662;</span>
+          <span class="drop">
+            <a href="/python/">Python (regimelib)</a>
+            <a href="/python/reference/instruments.html">Instruments</a>
+            <a href="/python/reference/engines.html">Pricing engines</a>
+            <a href="/python/reference/models.html">Pricing models</a>
+            <a href="/python/certificates.html">Certificates</a>
+          </span>
+        </span>
+        <a href="https://homogenization.microprediction.org/">Mathematics</a>
+        <a href="https://github.com/microprediction/regimelib">GitHub</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <h1>Languages</h1>
+    <p class="subtitle">One set of models, several runtimes, and a referee that keeps them identical.</p>
+    <p class="lead">The Python library is the reference: the certificates run here, features land here first, and the parity vectors for every port are generated here. A port ships when it reproduces the reference's prices on a fixed set of instruments to 1e-10, in the frozen limit and with switching on.</p>
+
+    <h2>Python (reference)</h2>
+<pre><code>pip install git+https://github.com/microprediction/regimelib</code></pre>
+    <p><strong>regimelib</strong> depends on numpy, scipy, mpmath and sympy; QuantLib is optional and is what the frozen limits are checked against. Every class mirrors a QuantLib class and takes the same parameters with a chain in front. Documentation: <a href="/python/">the Python API</a>; source: <a href="https://github.com/microprediction/regimelib">microprediction/regimelib</a>.</p>
+
+    <h2>Ports</h2>
+    <p>Ports to R, Julia and Rust follow the pattern of <a href="https://skaters.microprediction.org/languages.html">skaters</a>: the same instruments through the same scenarios, a parity suite generated from the reference, and no release without agreement. None has shipped yet; the parity vectors will be published from the reference repository when the first port is under way.</p>
+
+    <h2>The parity contract</h2>
+    <p>The reduced system <em>a' = (Q + diag g) a</em> and its expansion to any order with the initial layer; the terminal-forcing catalogue for each model; Lewis's and Gil&ndash;Pelaez's integrals with the frequency cutoff from the averaged model; and the warnings, since a port that prices silently where the expansion diverges is not a port of the library.</p>
+
+  </main>
+  <footer>
+    <a href="https://github.com/microprediction/regimeswitching">Source</a> &middot;
+    Part of the <a href="https://repos.microprediction.org/">microprediction</a> family
+    (see also <a href="https://homogenization.microprediction.org/">homogenization</a>,
+    <a href="https://skaters.microprediction.org/">skaters</a>).
+  </footer>
+
+</body>
+</html>

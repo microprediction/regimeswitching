@@ -1,0 +1,402 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Instruments &mdash; regimelib documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=9edc463e" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=d45e8c67"></script>
+      <script src="../_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Pricing engines" href="engines.html" />
+    <link rel="prev" title="Basics" href="basics.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            regimelib
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Getting started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started.html">Getting started</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started.html#installation">Installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started.html#importing">Importing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started.html#three-lines-of-pricing">Three lines of pricing</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Reference</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="basics.html">Basics</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="basics.html#regime-chains">Regime chains</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="basics.html#rl.RegimeChain"><code class="docutils literal notranslate"><span class="pre">rl.RegimeChain()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="basics.html#rl.RegimeChain.twoState"><code class="docutils literal notranslate"><span class="pre">rl.RegimeChain.twoState()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="basics.html#per-regime-parameters">Per-regime parameters</a></li>
+<li class="toctree-l2"><a class="reference internal" href="basics.html#maturities-and-dates">Maturities and dates</a></li>
+<li class="toctree-l2"><a class="reference internal" href="basics.html#instruments-engines-and-results">Instruments, engines and results</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="basics.html#instrument.setPricingEngine"><code class="docutils literal notranslate"><span class="pre">instrument.setPricingEngine()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="basics.html#instrument.NPV"><code class="docutils literal notranslate"><span class="pre">instrument.NPV()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="basics.html#instrument.delta"><code class="docutils literal notranslate"><span class="pre">instrument.delta()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="basics.html#regimes-and-the-starting-regime">Regimes and the starting regime</a></li>
+<li class="toctree-l2"><a class="reference internal" href="basics.html#warnings-and-diagnostics">Warnings and diagnostics</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="basics.html#rl.ExpansionWarning"><code class="docutils literal notranslate"><span class="pre">rl.ExpansionWarning</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Instruments</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#bonds">Bonds</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#rl.ZeroCouponBond"><code class="docutils literal notranslate"><span class="pre">rl.ZeroCouponBond()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#rl.CouponBond"><code class="docutils literal notranslate"><span class="pre">rl.CouponBond()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#options">Options</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#rl.VanillaOption"><code class="docutils literal notranslate"><span class="pre">rl.VanillaOption()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#VanillaOption.impliedVolatility"><code class="docutils literal notranslate"><span class="pre">VanillaOption.impliedVolatility()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#rl.BarrierOption"><code class="docutils literal notranslate"><span class="pre">rl.BarrierOption()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#rl.ContinuousGeometricAsianOption"><code class="docutils literal notranslate"><span class="pre">rl.ContinuousGeometricAsianOption()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#interest-rate-options">Interest-rate options</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#rl.ZeroCouponBondOption"><code class="docutils literal notranslate"><span class="pre">rl.ZeroCouponBondOption()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#rl.CouponBondOption"><code class="docutils literal notranslate"><span class="pre">rl.CouponBondOption()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#rl.Swaption"><code class="docutils literal notranslate"><span class="pre">rl.Swaption()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#rl.CapFloor"><code class="docutils literal notranslate"><span class="pre">rl.CapFloor()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#credit">Credit</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#rl.CreditDefaultSwap"><code class="docutils literal notranslate"><span class="pre">rl.CreditDefaultSwap()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#rl.FirstToDefaultSwap"><code class="docutils literal notranslate"><span class="pre">rl.FirstToDefaultSwap()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="engines.html">Pricing engines</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="engines.html#the-expansion">The expansion</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="engines.html#rl.FastSwitchingEngine"><code class="docutils literal notranslate"><span class="pre">rl.FastSwitchingEngine()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="engines.html#the-numerical-solution">The numerical solution</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="engines.html#rl.NumericalSwitchingEngine"><code class="docutils literal notranslate"><span class="pre">rl.NumericalSwitchingEngine()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="engines.html#monte-carlo">Monte Carlo</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="engines.html#rl.MonteCarloSwitchingEngine"><code class="docutils literal notranslate"><span class="pre">rl.MonteCarloSwitchingEngine()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="engines.html#finite-differences">Finite differences</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="engines.html#rl.SwitchingFDEngine"><code class="docutils literal notranslate"><span class="pre">rl.SwitchingFDEngine()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="engines.html#the-first-order-tier">The first-order tier</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="engines.html#rl.FirstOrderFDEngine"><code class="docutils literal notranslate"><span class="pre">rl.FirstOrderFDEngine()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="engines.html#rl.SwitchingFDReferee"><code class="docutils literal notranslate"><span class="pre">rl.SwitchingFDReferee()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="models.html">Pricing models</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="models.html#short-rate-models">Short-rate models</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="models.html#rl.SwitchingVasicek"><code class="docutils literal notranslate"><span class="pre">rl.SwitchingVasicek()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="models.html#rl.SwitchingVasicekJumps"><code class="docutils literal notranslate"><span class="pre">rl.SwitchingVasicekJumps()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="models.html#rl.SwitchingCoxIngersollRoss"><code class="docutils literal notranslate"><span class="pre">rl.SwitchingCoxIngersollRoss()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="models.html#rl.SwitchingHullWhite"><code class="docutils literal notranslate"><span class="pre">rl.SwitchingHullWhite()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="models.html#rl.SwitchingG2"><code class="docutils literal notranslate"><span class="pre">rl.SwitchingG2()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="models.html#rl.SwitchingIntensityBasket"><code class="docutils literal notranslate"><span class="pre">rl.SwitchingIntensityBasket()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="models.html#equity-models">Equity models</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="models.html#rl.SwitchingBlackScholesProcess"><code class="docutils literal notranslate"><span class="pre">rl.SwitchingBlackScholesProcess()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="models.html#rl.SwitchingHestonModel"><code class="docutils literal notranslate"><span class="pre">rl.SwitchingHestonModel()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="models.html#rl.SwitchingHestonVolOfVol"><code class="docutils literal notranslate"><span class="pre">rl.SwitchingHestonVolOfVol()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="models.html#rl.SwitchingMerton76Process"><code class="docutils literal notranslate"><span class="pre">rl.SwitchingMerton76Process()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="models.html#rl.SwitchingBatesModel"><code class="docutils literal notranslate"><span class="pre">rl.SwitchingBatesModel()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="models.html#rl.SwitchingVarianceGammaProcess"><code class="docutils literal notranslate"><span class="pre">rl.SwitchingVarianceGammaProcess()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="models.html#rl.SwitchingCEVProcess"><code class="docutils literal notranslate"><span class="pre">rl.SwitchingCEVProcess()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="models.html#hybrid-models">Hybrid models</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="models.html#rl.SwitchingEquityRates"><code class="docutils literal notranslate"><span class="pre">rl.SwitchingEquityRates()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="helpers.html">Helpers and calibration</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="helpers.html#rl.VolatilityHelper"><code class="docutils literal notranslate"><span class="pre">rl.VolatilityHelper()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="helpers.html#rl.calibrate"><code class="docutils literal notranslate"><span class="pre">rl.calibrate()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="symbolic.html">Symbolic</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="symbolic.html#rl.symbolic.VasicekTwoStateBond"><code class="docutils literal notranslate"><span class="pre">rl.symbolic.VasicekTwoStateBond</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="symbolic.html#rl.symbolic.VasicekBondFirstOrder"><code class="docutils literal notranslate"><span class="pre">rl.symbolic.VasicekBondFirstOrder</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="symbolic.html#rl.symbolic.CIRBondFirstOrder"><code class="docutils literal notranslate"><span class="pre">rl.symbolic.CIRBondFirstOrder</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="symbolic.html#rl.symbolic.VasicekJumpsBondFirstOrder"><code class="docutils literal notranslate"><span class="pre">rl.symbolic.VasicekJumpsBondFirstOrder</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="symbolic.html#parameterGreek"><code class="docutils literal notranslate"><span class="pre">parameterGreek()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="symbolic.html#rl.symbolic.TwoStateConstantForcing"><code class="docutils literal notranslate"><span class="pre">rl.symbolic.TwoStateConstantForcing</span></code></a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Background</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../background.html">The expansion</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../certificates.html">Certificates</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Examples</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../examples.html">Examples</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../examples.html#a-smile-from-a-regime">A smile from a regime</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../examples.html#which-order-to-trust">Which order to trust</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../examples.html#default-correlation-from-a-common-regime">Default correlation from a common regime</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../examples.html#a-greek-as-a-formula">A greek as a formula</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">regimelib</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Instruments</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/reference/instruments.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="instruments">
+<h1>Instruments<a class="headerlink" href="#instruments" title="Link to this heading"></a></h1>
+<p>Instruments accept QuantLib payoff and exercise objects or plain tuples. Each entry names the QuantLib engine its
+frozen limit is checked against.</p>
+<section id="bonds">
+<h2>Bonds<a class="headerlink" href="#bonds" title="Link to this heading"></a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="rl.ZeroCouponBond">
+<span class="sig-prename descclassname"><span class="pre">rl.</span></span><span class="sig-name descname"><span class="pre">ZeroCouponBond</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">maturity</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dayCounter</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">regimeAtMaturity</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#rl.ZeroCouponBond" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<p>Unit face value paid at <code class="docutils literal notranslate"><span class="pre">maturity</span></code>. With <code class="docutils literal notranslate"><span class="pre">regimeAtMaturity</span> <span class="pre">=</span> <span class="pre">j</span></code> the face value is paid only if the regime at
+maturity is <code class="docutils literal notranslate"><span class="pre">j</span></code>, which prices the memory of the regime; the sum over <code class="docutils literal notranslate"><span class="pre">j</span></code> is the plain bond. Under an intensity
+model the bond price is the survival probability. Frozen limit: <code class="docutils literal notranslate"><span class="pre">ql.Vasicek.discountBond</span></code>,
+<code class="docutils literal notranslate"><span class="pre">ql.CoxIngersollRoss.discountBond</span></code>, the Hull–White and G2 curves.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">bond</span> <span class="o">=</span> <span class="n">rl</span><span class="o">.</span><span class="n">ZeroCouponBond</span><span class="p">(</span><span class="mf">5.0</span><span class="p">)</span>
+<span class="n">bond</span><span class="o">.</span><span class="n">setPricingEngine</span><span class="p">(</span><span class="n">rl</span><span class="o">.</span><span class="n">FastSwitchingEngine</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">order</span><span class="o">=</span><span class="mi">4</span><span class="p">))</span>
+<span class="n">bond</span><span class="o">.</span><span class="n">NPV</span><span class="p">(),</span> <span class="n">bond</span><span class="o">.</span><span class="n">delta</span><span class="p">(),</span> <span class="n">bond</span><span class="o">.</span><span class="n">gamma</span><span class="p">()</span>          <span class="c1"># delta and gamma in r0</span>
+</pre></div>
+</div>
+<dl class="py function">
+<dt class="sig sig-object py" id="rl.CouponBond">
+<span class="sig-prename descclassname"><span class="pre">rl.</span></span><span class="sig-name descname"><span class="pre">CouponBond</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cashflows</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">faceAmount</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">couponRate</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">times</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dayCounter</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#rl.CouponBond" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<p>Fixed cash flows as a list of <code class="docutils literal notranslate"><span class="pre">(time,</span> <span class="pre">amount)</span></code>, or QuantLib-style <code class="docutils literal notranslate"><span class="pre">(faceAmount,</span> <span class="pre">couponRate,</span> <span class="pre">times)</span></code> with the
+last time carrying the face. Priced as the sum of zero-coupon bonds.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">rl</span><span class="o">.</span><span class="n">CouponBond</span><span class="p">(</span><span class="n">faceAmount</span><span class="o">=</span><span class="mf">100.0</span><span class="p">,</span> <span class="n">couponRate</span><span class="o">=</span><span class="mf">0.05</span><span class="p">,</span> <span class="n">times</span><span class="o">=</span><span class="p">[</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">2.0</span><span class="p">,</span> <span class="mf">3.0</span><span class="p">,</span> <span class="mf">4.0</span><span class="p">,</span> <span class="mf">5.0</span><span class="p">])</span>
+<span class="n">rl</span><span class="o">.</span><span class="n">CouponBond</span><span class="p">(</span><span class="n">cashflows</span><span class="o">=</span><span class="p">[(</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">5.0</span><span class="p">),</span> <span class="p">(</span><span class="mf">2.0</span><span class="p">,</span> <span class="mf">105.0</span><span class="p">)])</span>
+</pre></div>
+</div>
+</section>
+<section id="options">
+<h2>Options<a class="headerlink" href="#options" title="Link to this heading"></a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="rl.VanillaOption">
+<span class="sig-prename descclassname"><span class="pre">rl.</span></span><span class="sig-name descname"><span class="pre">VanillaOption</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">payoff</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">exercise</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">maturity</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dayCounter</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#rl.VanillaOption" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<p>European or American option. <code class="docutils literal notranslate"><span class="pre">payoff</span></code> is a QuantLib <code class="docutils literal notranslate"><span class="pre">PlainVanillaPayoff</span></code>, <code class="docutils literal notranslate"><span class="pre">CashOrNothingPayoff</span></code> or
+<code class="docutils literal notranslate"><span class="pre">AssetOrNothingPayoff</span></code>, or a tuple: <code class="docutils literal notranslate"><span class="pre">(&quot;call&quot;,</span> <span class="pre">K)</span></code>, <code class="docutils literal notranslate"><span class="pre">(&quot;put&quot;,</span> <span class="pre">K)</span></code>, <code class="docutils literal notranslate"><span class="pre">(&quot;cash&quot;,</span> <span class="pre">&quot;call&quot;,</span> <span class="pre">K,</span> <span class="pre">cash)</span></code>,
+<code class="docutils literal notranslate"><span class="pre">(&quot;asset&quot;,</span> <span class="pre">&quot;put&quot;,</span> <span class="pre">K)</span></code>. <code class="docutils literal notranslate"><span class="pre">exercise</span></code> is a QuantLib <code class="docutils literal notranslate"><span class="pre">EuropeanExercise</span></code> or <code class="docutils literal notranslate"><span class="pre">AmericanExercise</span></code>, or the string
+<code class="docutils literal notranslate"><span class="pre">&quot;american&quot;</span></code>; otherwise give <code class="docutils literal notranslate"><span class="pre">maturity</span></code>. American exercise is priced by <code class="docutils literal notranslate"><span class="pre">SwitchingFDEngine</span></code>. Frozen limit:
+<code class="docutils literal notranslate"><span class="pre">AnalyticEuropeanEngine</span></code>, <code class="docutils literal notranslate"><span class="pre">AnalyticHestonEngine</span></code>, <code class="docutils literal notranslate"><span class="pre">JumpDiffusionEngine</span></code>, <code class="docutils literal notranslate"><span class="pre">BatesEngine</span></code>,
+<code class="docutils literal notranslate"><span class="pre">VarianceGammaEngine</span></code>, <code class="docutils literal notranslate"><span class="pre">AnalyticDigitalAmericanEngine</span></code> for the digitals, <code class="docutils literal notranslate"><span class="pre">FdBlackScholesVanillaEngine</span></code> for
+the American.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">european</span> <span class="o">=</span> <span class="n">rl</span><span class="o">.</span><span class="n">VanillaOption</span><span class="p">((</span><span class="s2">"call"</span><span class="p">,</span> <span class="mf">100.0</span><span class="p">),</span> <span class="n">maturity</span><span class="o">=</span><span class="mf">1.0</span><span class="p">)</span>
+<span class="n">american</span> <span class="o">=</span> <span class="n">rl</span><span class="o">.</span><span class="n">VanillaOption</span><span class="p">((</span><span class="s2">"put"</span><span class="p">,</span> <span class="mf">105.0</span><span class="p">),</span> <span class="n">exercise</span><span class="o">=</span><span class="s2">"american"</span><span class="p">,</span> <span class="n">maturity</span><span class="o">=</span><span class="mf">1.0</span><span class="p">)</span>
+<span class="n">digital</span> <span class="o">=</span> <span class="n">rl</span><span class="o">.</span><span class="n">VanillaOption</span><span class="p">((</span><span class="s2">"cash"</span><span class="p">,</span> <span class="s2">"call"</span><span class="p">,</span> <span class="mf">100.0</span><span class="p">,</span> <span class="mf">10.0</span><span class="p">),</span> <span class="n">maturity</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
+<span class="n">ql_style</span> <span class="o">=</span> <span class="n">rl</span><span class="o">.</span><span class="n">VanillaOption</span><span class="p">(</span><span class="n">ql</span><span class="o">.</span><span class="n">PlainVanillaPayoff</span><span class="p">(</span><span class="n">ql</span><span class="o">.</span><span class="n">Option</span><span class="o">.</span><span class="n">Put</span><span class="p">,</span> <span class="mf">105.0</span><span class="p">),</span> <span class="n">ql</span><span class="o">.</span><span class="n">AmericanExercise</span><span class="p">(</span><span class="n">today</span><span class="p">,</span> <span class="n">expiry</span><span class="p">))</span>
+</pre></div>
+</div>
+<dl class="py function">
+<dt class="sig sig-object py" id="VanillaOption.impliedVolatility">
+<span class="sig-prename descclassname"><span class="pre">VanillaOption.</span></span><span class="sig-name descname"><span class="pre">impliedVolatility</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">price</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">accuracy</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1e-10</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">maxEvaluations</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">200</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">minVol</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1e-4</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">maxVol</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">4.0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#VanillaOption.impliedVolatility" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<p>The Black volatility reproducing the price (the instrument’s own <code class="docutils literal notranslate"><span class="pre">NPV()</span></code> unless <code class="docutils literal notranslate"><span class="pre">price</span></code> is given), for a plain
+vanilla payoff, as QuantLib’s <code class="docutils literal notranslate"><span class="pre">VanillaOption.impliedVolatility</span></code>.</p>
+<dl class="py function">
+<dt class="sig sig-object py" id="rl.BarrierOption">
+<span class="sig-prename descclassname"><span class="pre">rl.</span></span><span class="sig-name descname"><span class="pre">BarrierOption</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">barrierType</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">barrier</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rebate</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">payoff</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">exercise</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">maturity</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dayCounter</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#rl.BarrierOption" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<p>Continuously monitored single barrier. <code class="docutils literal notranslate"><span class="pre">barrierType</span></code> is QuantLib’s <code class="docutils literal notranslate"><span class="pre">Barrier.DownIn</span></code>, <code class="docutils literal notranslate"><span class="pre">UpIn</span></code>, <code class="docutils literal notranslate"><span class="pre">DownOut</span></code>,
+<code class="docutils literal notranslate"><span class="pre">UpOut</span></code> or one of <code class="docutils literal notranslate"><span class="pre">&quot;downin&quot;</span></code>, <code class="docutils literal notranslate"><span class="pre">&quot;upin&quot;</span></code>, <code class="docutils literal notranslate"><span class="pre">&quot;downout&quot;</span></code>, <code class="docutils literal notranslate"><span class="pre">&quot;upout&quot;</span></code>; the rebate is paid at the hit for
+knock-out and at expiry for knock-in. Priced by <code class="docutils literal notranslate"><span class="pre">SwitchingFDEngine</span></code> with the grid truncated at the barrier;
+knock-in is the vanilla less the knock-out. Frozen limit: <code class="docutils literal notranslate"><span class="pre">AnalyticBarrierEngine</span></code>.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">ko</span> <span class="o">=</span> <span class="n">rl</span><span class="o">.</span><span class="n">BarrierOption</span><span class="p">(</span><span class="s2">"downout"</span><span class="p">,</span> <span class="mf">80.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="p">(</span><span class="s2">"put"</span><span class="p">,</span> <span class="mf">100.0</span><span class="p">),</span> <span class="n">maturity</span><span class="o">=</span><span class="mf">1.0</span><span class="p">)</span>
+<span class="n">ko</span><span class="o">.</span><span class="n">setPricingEngine</span><span class="p">(</span><span class="n">rl</span><span class="o">.</span><span class="n">SwitchingFDEngine</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">regime</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">n</span><span class="o">=</span><span class="mi">1601</span><span class="p">,</span> <span class="n">steps</span><span class="o">=</span><span class="mi">600</span><span class="p">))</span>
+</pre></div>
+</div>
+<dl class="py function">
+<dt class="sig sig-object py" id="rl.ContinuousGeometricAsianOption">
+<span class="sig-prename descclassname"><span class="pre">rl.</span></span><span class="sig-name descname"><span class="pre">ContinuousGeometricAsianOption</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">payoff</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">exercise</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">maturity</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dayCounter</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#rl.ContinuousGeometricAsianOption" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<p>Fixed-strike option on the continuous geometric average of the price from now to expiry. The time average of the
+log price gives a forcing quadratic in time to maturity, so the characteristic-function engines price it exactly.
+Frozen limit: <code class="docutils literal notranslate"><span class="pre">AnalyticContinuousGeometricAveragePriceAsianEngine</span></code>.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">asian</span> <span class="o">=</span> <span class="n">rl</span><span class="o">.</span><span class="n">ContinuousGeometricAsianOption</span><span class="p">((</span><span class="s2">"call"</span><span class="p">,</span> <span class="mf">100.0</span><span class="p">),</span> <span class="n">maturity</span><span class="o">=</span><span class="mf">1.0</span><span class="p">)</span>
+<span class="n">asian</span><span class="o">.</span><span class="n">setPricingEngine</span><span class="p">(</span><span class="n">rl</span><span class="o">.</span><span class="n">NumericalSwitchingEngine</span><span class="p">(</span><span class="n">model</span><span class="p">))</span>
+</pre></div>
+</div>
+</section>
+<section id="interest-rate-options">
+<h2>Interest-rate options<a class="headerlink" href="#interest-rate-options" title="Link to this heading"></a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="rl.ZeroCouponBondOption">
+<span class="sig-prename descclassname"><span class="pre">rl.</span></span><span class="sig-name descname"><span class="pre">ZeroCouponBondOption</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">kind</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">strike</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">maturity</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bondMaturity</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#rl.ZeroCouponBondOption" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<p>European call or put expiring at <code class="docutils literal notranslate"><span class="pre">maturity</span></code> on the unit bond maturing at <code class="docutils literal notranslate"><span class="pre">bondMaturity</span></code>, under
+<code class="docutils literal notranslate"><span class="pre">SwitchingVasicek</span></code>, <code class="docutils literal notranslate"><span class="pre">SwitchingHullWhite</span></code> or <code class="docutils literal notranslate"><span class="pre">SwitchingG2</span></code>, by Gil–Pelaez integrals conditioned on the regime
+at expiry. Frozen limit: <code class="docutils literal notranslate"><span class="pre">Vasicek.discountBondOption</span></code>, <code class="docutils literal notranslate"><span class="pre">HullWhite.discountBondOption</span></code>, <code class="docutils literal notranslate"><span class="pre">G2.discountBondOption</span></code>.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">rl</span><span class="o">.</span><span class="n">ZeroCouponBondOption</span><span class="p">(</span><span class="s2">"call"</span><span class="p">,</span> <span class="mf">0.9</span><span class="p">,</span> <span class="mf">2.0</span><span class="p">,</span> <span class="mf">5.0</span><span class="p">)</span>
+</pre></div>
+</div>
+<dl class="py function">
+<dt class="sig sig-object py" id="rl.CouponBondOption">
+<span class="sig-prename descclassname"><span class="pre">rl.</span></span><span class="sig-name descname"><span class="pre">CouponBondOption</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">kind</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">strike</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">maturity</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cashflows</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dayCounter</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#rl.CouponBondOption" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<p>European option on a bond with fixed cash flows <code class="docutils literal notranslate"><span class="pre">[(time,</span> <span class="pre">amount),</span> <span class="pre">...]</span></code> after expiry, by Jamshidian’s
+decomposition conditioned on the regime at expiry (one crossing per regime), under <code class="docutils literal notranslate"><span class="pre">SwitchingVasicek</span></code> and
+<code class="docutils literal notranslate"><span class="pre">SwitchingHullWhite</span></code>; on the short-rate grid under CIR and G2 as well.</p>
+<dl class="py function">
+<dt class="sig sig-object py" id="rl.Swaption">
+<span class="sig-prename descclassname"><span class="pre">rl.</span></span><span class="sig-name descname"><span class="pre">Swaption</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">kind</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">maturity</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fixedTimes</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fixedRate</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">notional</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dayCounter</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">exerciseTimes</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#rl.Swaption" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<p>European or Bermudan swaption on a fixed-for-floating swap: <code class="docutils literal notranslate"><span class="pre">kind</span></code> <code class="docutils literal notranslate"><span class="pre">&quot;payer&quot;</span></code> or <code class="docutils literal notranslate"><span class="pre">&quot;receiver&quot;</span></code>, expiry, the
+fixed-leg payment times (the first accrual starts at expiry), fixed rate and notional. A receiver swaption is a call
+on the coupon bond struck at par, a payer swaption the put. With <code class="docutils literal notranslate"><span class="pre">exerciseTimes</span></code> (or a QuantLib
+<code class="docutils literal notranslate"><span class="pre">BermudanExercise</span></code> in place of <code class="docutils literal notranslate"><span class="pre">maturity</span></code>) the swaption is Bermudan and priced by <code class="docutils literal notranslate"><span class="pre">SwitchingFDEngine</span></code> on the
+short-rate grid. Frozen limit: <code class="docutils literal notranslate"><span class="pre">JamshidianSwaptionEngine</span></code>, <code class="docutils literal notranslate"><span class="pre">G2SwaptionEngine</span></code>, <code class="docutils literal notranslate"><span class="pre">FdHullWhiteSwaptionEngine</span></code>,
+<code class="docutils literal notranslate"><span class="pre">FdG2SwaptionEngine</span></code>.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">european</span> <span class="o">=</span> <span class="n">rl</span><span class="o">.</span><span class="n">Swaption</span><span class="p">(</span><span class="s2">"payer"</span><span class="p">,</span> <span class="mf">2.0</span><span class="p">,</span> <span class="p">[</span><span class="mf">3.0</span><span class="p">,</span> <span class="mf">4.0</span><span class="p">,</span> <span class="mf">5.0</span><span class="p">,</span> <span class="mf">6.0</span><span class="p">,</span> <span class="mf">7.0</span><span class="p">],</span> <span class="mf">0.035</span><span class="p">,</span> <span class="n">notional</span><span class="o">=</span><span class="mf">100.0</span><span class="p">)</span>
+<span class="n">bermudan</span> <span class="o">=</span> <span class="n">rl</span><span class="o">.</span><span class="n">Swaption</span><span class="p">(</span><span class="s2">"payer"</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="p">[</span><span class="mf">2.0</span><span class="p">,</span> <span class="mf">3.0</span><span class="p">,</span> <span class="mf">4.0</span><span class="p">,</span> <span class="mf">5.0</span><span class="p">,</span> <span class="mf">6.0</span><span class="p">],</span> <span class="mf">0.035</span><span class="p">,</span> <span class="n">exerciseTimes</span><span class="o">=</span><span class="p">[</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">2.0</span><span class="p">,</span> <span class="mf">3.0</span><span class="p">,</span> <span class="mf">4.0</span><span class="p">,</span> <span class="mf">5.0</span><span class="p">])</span>
+<span class="n">bermudan</span><span class="o">.</span><span class="n">setPricingEngine</span><span class="p">(</span><span class="n">rl</span><span class="o">.</span><span class="n">SwitchingFDEngine</span><span class="p">(</span><span class="n">hullWhiteModel</span><span class="p">,</span> <span class="n">n</span><span class="o">=</span><span class="mi">1201</span><span class="p">,</span> <span class="n">steps</span><span class="o">=</span><span class="mi">600</span><span class="p">))</span>
+</pre></div>
+</div>
+<dl class="py function">
+<dt class="sig sig-object py" id="rl.CapFloor">
+<span class="sig-prename descclassname"><span class="pre">rl.</span></span><span class="sig-name descname"><span class="pre">CapFloor</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">kind</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">times</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">strike</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">notional</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dayCounter</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#rl.CapFloor" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<p>Cap or floor on the simple forward rate over the consecutive periods <code class="docutils literal notranslate"><span class="pre">times</span> <span class="pre">=</span> <span class="pre">[T0,</span> <span class="pre">...,</span> <span class="pre">Tn]</span></code>. Each caplet is
+<code class="docutils literal notranslate"><span class="pre">(1</span> <span class="pre">+</span> <span class="pre">tau</span> <span class="pre">K)</span></code> puts on the zero-coupon bond maturing at the period end, expiring at its start, struck at
+<code class="docutils literal notranslate"><span class="pre">1</span> <span class="pre">/</span> <span class="pre">(1</span> <span class="pre">+</span> <span class="pre">tau</span> <span class="pre">K)</span></code>; floorlets are the calls. Frozen limit: <code class="docutils literal notranslate"><span class="pre">AnalyticCapFloorEngine</span></code> (G2: the sum of its bond puts).</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">cap</span> <span class="o">=</span> <span class="n">rl</span><span class="o">.</span><span class="n">CapFloor</span><span class="p">(</span><span class="s2">"cap"</span><span class="p">,</span> <span class="p">[</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">2.0</span><span class="p">,</span> <span class="mf">3.0</span><span class="p">,</span> <span class="mf">4.0</span><span class="p">,</span> <span class="mf">5.0</span><span class="p">],</span> <span class="mf">0.03</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="credit">
+<h2>Credit<a class="headerlink" href="#credit" title="Link to this heading"></a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="rl.CreditDefaultSwap">
+<span class="sig-prename descclassname"><span class="pre">rl.</span></span><span class="sig-name descname"><span class="pre">CreditDefaultSwap</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">side</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">spread</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">times</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">recovery</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">discount</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">accrualOnDefault</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dayCounter</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#rl.CreditDefaultSwap" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<p>Protection on a unit notional with the premium <code class="docutils literal notranslate"><span class="pre">spread</span></code> paid at <code class="docutils literal notranslate"><span class="pre">times</span></code>, recovery <code class="docutils literal notranslate"><span class="pre">recovery</span></code>, on a model whose
+bond price is the survival probability (<code class="docutils literal notranslate"><span class="pre">SwitchingVasicek</span></code>, <code class="docutils literal notranslate"><span class="pre">SwitchingCoxIngersollRoss</span></code>, <code class="docutils literal notranslate"><span class="pre">SwitchingVasicekJumps</span></code>
+used as intensities). <code class="docutils literal notranslate"><span class="pre">discount</span></code> is a flat risk-free rate or a callable <code class="docutils literal notranslate"><span class="pre">t</span> <span class="pre">-&gt;</span> <span class="pre">discount</span> <span class="pre">factor</span></code>. Protection is
+valued at the mid-point of each accrual period, as QuantLib’s <code class="docutils literal notranslate"><span class="pre">MidPointCdsEngine</span></code>. <code class="docutils literal notranslate"><span class="pre">fairSpread()</span></code>,
+<code class="docutils literal notranslate"><span class="pre">couponLegNPV()</span></code> and <code class="docutils literal notranslate"><span class="pre">defaultLegNPV()</span></code> are available after <code class="docutils literal notranslate"><span class="pre">NPV()</span></code>.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">intensity</span> <span class="o">=</span> <span class="n">rl</span><span class="o">.</span><span class="n">SwitchingCoxIngersollRoss</span><span class="p">(</span><span class="n">chain</span><span class="p">,</span> <span class="mf">0.02</span><span class="p">,</span> <span class="n">theta</span><span class="o">=</span><span class="p">[</span><span class="mf">0.05</span><span class="p">,</span> <span class="mf">0.01</span><span class="p">],</span> <span class="n">k</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">sigma</span><span class="o">=</span><span class="mf">0.08</span><span class="p">)</span>
+<span class="n">cds</span> <span class="o">=</span> <span class="n">rl</span><span class="o">.</span><span class="n">CreditDefaultSwap</span><span class="p">(</span><span class="s2">"buyer"</span><span class="p">,</span> <span class="mf">0.02</span><span class="p">,</span> <span class="p">[</span><span class="mf">0.5</span> <span class="o">*</span> <span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">11</span><span class="p">)],</span> <span class="mf">0.4</span><span class="p">,</span> <span class="n">discount</span><span class="o">=</span><span class="mf">0.03</span><span class="p">)</span>
+<span class="n">cds</span><span class="o">.</span><span class="n">setPricingEngine</span><span class="p">(</span><span class="n">rl</span><span class="o">.</span><span class="n">NumericalSwitchingEngine</span><span class="p">(</span><span class="n">intensity</span><span class="p">,</span> <span class="n">regime</span><span class="o">=</span><span class="mi">0</span><span class="p">))</span>
+<span class="n">cds</span><span class="o">.</span><span class="n">fairSpread</span><span class="p">()</span>
+</pre></div>
+</div>
+<dl class="py function">
+<dt class="sig sig-object py" id="rl.FirstToDefaultSwap">
+<span class="sig-prename descclassname"><span class="pre">rl.</span></span><span class="sig-name descname"><span class="pre">FirstToDefaultSwap</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#rl.FirstToDefaultSwap" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<p>The same class on a <code class="docutils literal notranslate"><span class="pre">SwitchingIntensityBasket</span></code>: the premium runs until the first default among the names, the
+protection pays at the first default.</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="basics.html" class="btn btn-neutral float-left" title="Basics" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="engines.html" class="btn btn-neutral float-right" title="Pricing engines" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2026, Peter Cotton.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

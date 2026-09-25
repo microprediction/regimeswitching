@@ -1,0 +1,358 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Basics &mdash; regimelib documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=9edc463e" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=d45e8c67"></script>
+      <script src="../_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Instruments" href="instruments.html" />
+    <link rel="prev" title="Getting started" href="../getting_started.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            regimelib
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Getting started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started.html">Getting started</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started.html#installation">Installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started.html#importing">Importing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started.html#three-lines-of-pricing">Three lines of pricing</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Reference</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Basics</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#regime-chains">Regime chains</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#rl.RegimeChain"><code class="docutils literal notranslate"><span class="pre">rl.RegimeChain()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#rl.RegimeChain.twoState"><code class="docutils literal notranslate"><span class="pre">rl.RegimeChain.twoState()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#per-regime-parameters">Per-regime parameters</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#maturities-and-dates">Maturities and dates</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#instruments-engines-and-results">Instruments, engines and results</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#instrument.setPricingEngine"><code class="docutils literal notranslate"><span class="pre">instrument.setPricingEngine()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#instrument.NPV"><code class="docutils literal notranslate"><span class="pre">instrument.NPV()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#instrument.delta"><code class="docutils literal notranslate"><span class="pre">instrument.delta()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#regimes-and-the-starting-regime">Regimes and the starting regime</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#warnings-and-diagnostics">Warnings and diagnostics</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#rl.ExpansionWarning"><code class="docutils literal notranslate"><span class="pre">rl.ExpansionWarning</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="instruments.html">Instruments</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="instruments.html#bonds">Bonds</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="instruments.html#rl.ZeroCouponBond"><code class="docutils literal notranslate"><span class="pre">rl.ZeroCouponBond()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="instruments.html#rl.CouponBond"><code class="docutils literal notranslate"><span class="pre">rl.CouponBond()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="instruments.html#options">Options</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="instruments.html#rl.VanillaOption"><code class="docutils literal notranslate"><span class="pre">rl.VanillaOption()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="instruments.html#VanillaOption.impliedVolatility"><code class="docutils literal notranslate"><span class="pre">VanillaOption.impliedVolatility()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="instruments.html#rl.BarrierOption"><code class="docutils literal notranslate"><span class="pre">rl.BarrierOption()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="instruments.html#rl.ContinuousGeometricAsianOption"><code class="docutils literal notranslate"><span class="pre">rl.ContinuousGeometricAsianOption()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="instruments.html#interest-rate-options">Interest-rate options</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="instruments.html#rl.ZeroCouponBondOption"><code class="docutils literal notranslate"><span class="pre">rl.ZeroCouponBondOption()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="instruments.html#rl.CouponBondOption"><code class="docutils literal notranslate"><span class="pre">rl.CouponBondOption()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="instruments.html#rl.Swaption"><code class="docutils literal notranslate"><span class="pre">rl.Swaption()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="instruments.html#rl.CapFloor"><code class="docutils literal notranslate"><span class="pre">rl.CapFloor()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="instruments.html#credit">Credit</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="instruments.html#rl.CreditDefaultSwap"><code class="docutils literal notranslate"><span class="pre">rl.CreditDefaultSwap()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="instruments.html#rl.FirstToDefaultSwap"><code class="docutils literal notranslate"><span class="pre">rl.FirstToDefaultSwap()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="engines.html">Pricing engines</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="engines.html#the-expansion">The expansion</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="engines.html#rl.FastSwitchingEngine"><code class="docutils literal notranslate"><span class="pre">rl.FastSwitchingEngine()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="engines.html#the-numerical-solution">The numerical solution</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="engines.html#rl.NumericalSwitchingEngine"><code class="docutils literal notranslate"><span class="pre">rl.NumericalSwitchingEngine()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="engines.html#monte-carlo">Monte Carlo</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="engines.html#rl.MonteCarloSwitchingEngine"><code class="docutils literal notranslate"><span class="pre">rl.MonteCarloSwitchingEngine()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="engines.html#finite-differences">Finite differences</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="engines.html#rl.SwitchingFDEngine"><code class="docutils literal notranslate"><span class="pre">rl.SwitchingFDEngine()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="engines.html#the-first-order-tier">The first-order tier</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="engines.html#rl.FirstOrderFDEngine"><code class="docutils literal notranslate"><span class="pre">rl.FirstOrderFDEngine()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="engines.html#rl.SwitchingFDReferee"><code class="docutils literal notranslate"><span class="pre">rl.SwitchingFDReferee()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="models.html">Pricing models</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="models.html#short-rate-models">Short-rate models</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="models.html#rl.SwitchingVasicek"><code class="docutils literal notranslate"><span class="pre">rl.SwitchingVasicek()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="models.html#rl.SwitchingVasicekJumps"><code class="docutils literal notranslate"><span class="pre">rl.SwitchingVasicekJumps()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="models.html#rl.SwitchingCoxIngersollRoss"><code class="docutils literal notranslate"><span class="pre">rl.SwitchingCoxIngersollRoss()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="models.html#rl.SwitchingHullWhite"><code class="docutils literal notranslate"><span class="pre">rl.SwitchingHullWhite()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="models.html#rl.SwitchingG2"><code class="docutils literal notranslate"><span class="pre">rl.SwitchingG2()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="models.html#rl.SwitchingIntensityBasket"><code class="docutils literal notranslate"><span class="pre">rl.SwitchingIntensityBasket()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="models.html#equity-models">Equity models</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="models.html#rl.SwitchingBlackScholesProcess"><code class="docutils literal notranslate"><span class="pre">rl.SwitchingBlackScholesProcess()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="models.html#rl.SwitchingHestonModel"><code class="docutils literal notranslate"><span class="pre">rl.SwitchingHestonModel()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="models.html#rl.SwitchingHestonVolOfVol"><code class="docutils literal notranslate"><span class="pre">rl.SwitchingHestonVolOfVol()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="models.html#rl.SwitchingMerton76Process"><code class="docutils literal notranslate"><span class="pre">rl.SwitchingMerton76Process()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="models.html#rl.SwitchingBatesModel"><code class="docutils literal notranslate"><span class="pre">rl.SwitchingBatesModel()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="models.html#rl.SwitchingVarianceGammaProcess"><code class="docutils literal notranslate"><span class="pre">rl.SwitchingVarianceGammaProcess()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="models.html#rl.SwitchingCEVProcess"><code class="docutils literal notranslate"><span class="pre">rl.SwitchingCEVProcess()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="models.html#hybrid-models">Hybrid models</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="models.html#rl.SwitchingEquityRates"><code class="docutils literal notranslate"><span class="pre">rl.SwitchingEquityRates()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="helpers.html">Helpers and calibration</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="helpers.html#rl.VolatilityHelper"><code class="docutils literal notranslate"><span class="pre">rl.VolatilityHelper()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="helpers.html#rl.calibrate"><code class="docutils literal notranslate"><span class="pre">rl.calibrate()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="symbolic.html">Symbolic</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="symbolic.html#rl.symbolic.VasicekTwoStateBond"><code class="docutils literal notranslate"><span class="pre">rl.symbolic.VasicekTwoStateBond</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="symbolic.html#rl.symbolic.VasicekBondFirstOrder"><code class="docutils literal notranslate"><span class="pre">rl.symbolic.VasicekBondFirstOrder</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="symbolic.html#rl.symbolic.CIRBondFirstOrder"><code class="docutils literal notranslate"><span class="pre">rl.symbolic.CIRBondFirstOrder</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="symbolic.html#rl.symbolic.VasicekJumpsBondFirstOrder"><code class="docutils literal notranslate"><span class="pre">rl.symbolic.VasicekJumpsBondFirstOrder</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="symbolic.html#parameterGreek"><code class="docutils literal notranslate"><span class="pre">parameterGreek()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="symbolic.html#rl.symbolic.TwoStateConstantForcing"><code class="docutils literal notranslate"><span class="pre">rl.symbolic.TwoStateConstantForcing</span></code></a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Background</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../background.html">The expansion</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../certificates.html">Certificates</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Examples</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../examples.html">Examples</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../examples.html#a-smile-from-a-regime">A smile from a regime</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../examples.html#which-order-to-trust">Which order to trust</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../examples.html#default-correlation-from-a-common-regime">Default correlation from a common regime</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../examples.html#a-greek-as-a-formula">A greek as a formula</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">regimelib</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Basics</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/reference/basics.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="basics">
+<h1>Basics<a class="headerlink" href="#basics" title="Link to this heading"></a></h1>
+<section id="regime-chains">
+<h2>Regime chains<a class="headerlink" href="#regime-chains" title="Link to this heading"></a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="rl.RegimeChain">
+<span class="sig-prename descclassname"><span class="pre">rl.</span></span><span class="sig-name descname"><span class="pre">RegimeChain</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">generator</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#rl.RegimeChain" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<p>The hidden regime is a continuous-time Markov chain given by its generator matrix <code class="docutils literal notranslate"><span class="pre">Q</span></code> (rows sum to zero, off-diagonal
+entries are the switching rates). Any number of regimes is allowed.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">chain</span> <span class="o">=</span> <span class="n">rl</span><span class="o">.</span><span class="n">RegimeChain</span><span class="p">([[</span><span class="o">-</span><span class="mf">5.0</span><span class="p">,</span> <span class="mf">3.0</span><span class="p">,</span> <span class="mf">2.0</span><span class="p">],</span>
+                        <span class="p">[</span><span class="mf">4.0</span><span class="p">,</span> <span class="o">-</span><span class="mf">9.0</span><span class="p">,</span> <span class="mf">5.0</span><span class="p">],</span>
+                        <span class="p">[</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">6.0</span><span class="p">,</span> <span class="o">-</span><span class="mf">7.0</span><span class="p">]])</span>
+<span class="n">chain</span><span class="o">.</span><span class="n">numberOfRegimes</span><span class="p">()</span>          <span class="c1"># 3</span>
+<span class="n">chain</span><span class="o">.</span><span class="n">stationaryDistribution</span><span class="p">()</span>   <span class="c1"># the long-run occupation of each regime</span>
+<span class="n">chain</span><span class="o">.</span><span class="n">meanHoldingTime</span><span class="p">()</span>          <span class="c1"># n / -trace Q, the expansion parameter</span>
+</pre></div>
+</div>
+<dl class="py function">
+<dt class="sig sig-object py" id="rl.RegimeChain.twoState">
+<span class="sig-prename descclassname"><span class="pre">rl.RegimeChain.</span></span><span class="sig-name descname"><span class="pre">twoState</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">rate12</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rate21</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#rl.RegimeChain.twoState" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<p>The two-regime chain with switching rate <code class="docutils literal notranslate"><span class="pre">rate12</span></code> out of regime 0 and <code class="docutils literal notranslate"><span class="pre">rate21</span></code> out of regime 1.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">chain</span> <span class="o">=</span> <span class="n">rl</span><span class="o">.</span><span class="n">RegimeChain</span><span class="o">.</span><span class="n">twoState</span><span class="p">(</span><span class="mf">3.0</span><span class="p">,</span> <span class="mf">5.0</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="per-regime-parameters">
+<h2>Per-regime parameters<a class="headerlink" href="#per-regime-parameters" title="Link to this heading"></a></h2>
+<p>A model parameter that may switch is given as a list with one value per regime, or as a scalar for the same value
+in every regime. The <strong>frozen limit</strong> — every regime equal — is the QuantLib model with those parameters, whatever
+the chain does; the certificates check each model against QuantLib in that limit.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">rl</span><span class="o">.</span><span class="n">SwitchingVasicek</span><span class="p">(</span><span class="n">chain</span><span class="p">,</span> <span class="n">r0</span><span class="o">=</span><span class="mf">0.03</span><span class="p">,</span> <span class="n">a</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">b</span><span class="o">=</span><span class="p">[</span><span class="mf">0.06</span><span class="p">,</span> <span class="mf">0.02</span><span class="p">],</span> <span class="n">sigma</span><span class="o">=</span><span class="mf">0.012</span><span class="p">)</span>   <span class="c1"># b switches, sigma does not</span>
+</pre></div>
+</div>
+</section>
+<section id="maturities-and-dates">
+<h2>Maturities and dates<a class="headerlink" href="#maturities-and-dates" title="Link to this heading"></a></h2>
+<p>Times are years. Wherever a maturity is expected, a QuantLib <code class="docutils literal notranslate"><span class="pre">Date</span></code> is also accepted and is measured from
+<code class="docutils literal notranslate"><span class="pre">ql.Settings.instance().evaluationDate</span></code> with Actual/365 unless a <code class="docutils literal notranslate"><span class="pre">dayCounter</span></code> is given; a <code class="docutils literal notranslate"><span class="pre">VanillaOption</span></code> takes
+its maturity from a QuantLib exercise object.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">ql</span><span class="o">.</span><span class="n">Settings</span><span class="o">.</span><span class="n">instance</span><span class="p">()</span><span class="o">.</span><span class="n">evaluationDate</span> <span class="o">=</span> <span class="n">ql</span><span class="o">.</span><span class="n">Date</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2020</span><span class="p">)</span>
+<span class="n">bond</span> <span class="o">=</span> <span class="n">rl</span><span class="o">.</span><span class="n">ZeroCouponBond</span><span class="p">(</span><span class="n">ql</span><span class="o">.</span><span class="n">Date</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2025</span><span class="p">))</span>
+<span class="n">option</span> <span class="o">=</span> <span class="n">rl</span><span class="o">.</span><span class="n">VanillaOption</span><span class="p">(</span><span class="n">ql</span><span class="o">.</span><span class="n">PlainVanillaPayoff</span><span class="p">(</span><span class="n">ql</span><span class="o">.</span><span class="n">Option</span><span class="o">.</span><span class="n">Put</span><span class="p">,</span> <span class="mf">100.0</span><span class="p">),</span>
+                          <span class="n">ql</span><span class="o">.</span><span class="n">EuropeanExercise</span><span class="p">(</span><span class="n">ql</span><span class="o">.</span><span class="n">Date</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2021</span><span class="p">)))</span>
+</pre></div>
+</div>
+</section>
+<section id="instruments-engines-and-results">
+<h2>Instruments, engines and results<a class="headerlink" href="#instruments-engines-and-results" title="Link to this heading"></a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="instrument.setPricingEngine">
+<span class="sig-prename descclassname"><span class="pre">instrument.</span></span><span class="sig-name descname"><span class="pre">setPricingEngine</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">engine</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#instrument.setPricingEngine" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="instrument.NPV">
+<span class="sig-prename descclassname"><span class="pre">instrument.</span></span><span class="sig-name descname"><span class="pre">NPV</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#instrument.NPV" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="instrument.delta">
+<span class="sig-prename descclassname"><span class="pre">instrument.</span></span><span class="sig-name descname"><span class="pre">delta</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">instrument.gamma()</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">instrument.theta()</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">instrument.vega()</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">instrument.rho(</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#instrument.delta" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<p>As in QuantLib, an instrument holds its terms, an engine holds the model and the method, and <code class="docutils literal notranslate"><span class="pre">NPV()</span></code> triggers the
+calculation. The greeks are computed by differentiating the pricing formula, never by bumping; a greek the engine
+does not provide raises <code class="docutils literal notranslate"><span class="pre">RuntimeError(&quot;...</span> <span class="pre">not</span> <span class="pre">provided</span> <span class="pre">by</span> <span class="pre">the</span> <span class="pre">engine&quot;)</span></code>, as QuantLib’s “not provided” does.</p>
+<ul class="simple">
+<li><p>Options under the characteristic-function engines: <code class="docutils literal notranslate"><span class="pre">delta</span></code>, <code class="docutils literal notranslate"><span class="pre">gamma</span></code>, <code class="docutils literal notranslate"><span class="pre">theta</span></code>, <code class="docutils literal notranslate"><span class="pre">rho</span></code> in the spot, and
+<code class="docutils literal notranslate"><span class="pre">vega</span></code> in the initial variance for stochastic-volatility models.</p></li>
+<li><p>Bonds under Vasicek and CIR: <code class="docutils literal notranslate"><span class="pre">delta</span></code> and <code class="docutils literal notranslate"><span class="pre">gamma</span></code> in the short rate.</p></li>
+<li><p>Options on the finite-difference engine: <code class="docutils literal notranslate"><span class="pre">delta</span></code>, <code class="docutils literal notranslate"><span class="pre">gamma</span></code>, <code class="docutils literal notranslate"><span class="pre">theta</span></code> from the grid.</p></li>
+</ul>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">option</span><span class="o">.</span><span class="n">setPricingEngine</span><span class="p">(</span><span class="n">rl</span><span class="o">.</span><span class="n">NumericalSwitchingEngine</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">regime</span><span class="o">=</span><span class="mi">1</span><span class="p">))</span>
+<span class="n">option</span><span class="o">.</span><span class="n">NPV</span><span class="p">()</span>
+<span class="n">option</span><span class="o">.</span><span class="n">delta</span><span class="p">()</span>
+<span class="n">option</span><span class="o">.</span><span class="n">impliedVolatility</span><span class="p">()</span>            <span class="c1"># the Black volatility reproducing the price</span>
+</pre></div>
+</div>
+</section>
+<section id="regimes-and-the-starting-regime">
+<h2>Regimes and the starting regime<a class="headerlink" href="#regimes-and-the-starting-regime" title="Link to this heading"></a></h2>
+<p>Every engine takes <code class="docutils literal notranslate"><span class="pre">regime</span></code>, the regime in force today. The price of the same instrument differs by starting
+regime; the difference is the <em>memory</em> of the regime, which the expansion carries in its initial-layer terms.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">regime</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">chain</span><span class="o">.</span><span class="n">numberOfRegimes</span><span class="p">()):</span>
+    <span class="n">option</span><span class="o">.</span><span class="n">setPricingEngine</span><span class="p">(</span><span class="n">rl</span><span class="o">.</span><span class="n">FastSwitchingEngine</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">order</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">regime</span><span class="o">=</span><span class="n">regime</span><span class="p">))</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">regime</span><span class="p">,</span> <span class="n">option</span><span class="o">.</span><span class="n">NPV</span><span class="p">())</span>
+</pre></div>
+</div>
+</section>
+<section id="warnings-and-diagnostics">
+<h2>Warnings and diagnostics<a class="headerlink" href="#warnings-and-diagnostics" title="Link to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="rl.ExpansionWarning">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">rl.</span></span><span class="sig-name descname"><span class="pre">ExpansionWarning</span></span><a class="headerlink" href="#rl.ExpansionWarning" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<p>The expansion is asymptotic in the mean holding time times the forcing, so it can fail to converge: for a slow chain,
+a large difference between regimes, or at high Fourier frequencies. <code class="docutils literal notranslate"><span class="pre">FastSwitchingEngine</span></code> raises an
+<code class="docutils literal notranslate"><span class="pre">ExpansionWarning</span></code> when the last term kept is not smaller than the one before it, when it is more than a
+thousandth of the value, or when nodes of the Fourier integral had to be solved numerically because the series
+diverged there. <code class="docutils literal notranslate"><span class="pre">instrument._result(&quot;diagnostics&quot;)</span></code> returns the holding time, the order used, the relative size
+of the last term and the count of numerical nodes.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">warnings</span>
+<span class="k">with</span> <span class="n">warnings</span><span class="o">.</span><span class="n">catch_warnings</span><span class="p">(</span><span class="n">record</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span> <span class="k">as</span> <span class="n">caught</span><span class="p">:</span>
+    <span class="n">warnings</span><span class="o">.</span><span class="n">simplefilter</span><span class="p">(</span><span class="s2">"always"</span><span class="p">)</span>
+    <span class="n">price</span> <span class="o">=</span> <span class="n">option</span><span class="o">.</span><span class="n">NPV</span><span class="p">()</span>
+<span class="k">for</span> <span class="n">w</span> <span class="ow">in</span> <span class="n">caught</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">w</span><span class="o">.</span><span class="n">message</span><span class="p">)</span>
+<span class="n">option</span><span class="o">.</span><span class="n">_result</span><span class="p">(</span><span class="s2">"diagnostics"</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../getting_started.html" class="btn btn-neutral float-left" title="Getting started" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="instruments.html" class="btn btn-neutral float-right" title="Instruments" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2026, Peter Cotton.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

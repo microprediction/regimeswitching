@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>regimeswitching</title>
+  <meta name="description" content="Pricing libraries for models with a hidden Markov regime: QuantLib's models, any parameter switching, priced by the fast-switching expansion with a referee for every number." />
+  <link rel="stylesheet" href="/academic.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="nav-inner">
+      <a class="brand" href="/">regimeswitching</a>
+      <nav>
+        <a href="/">Home</a>
+        <a href="/languages.html">Languages</a>
+        <span class="menu" tabindex="0"><span class="menu-label">Docs &#9662;</span>
+          <span class="drop">
+            <a href="/python/">Python (regimelib)</a>
+            <a href="/python/reference/instruments.html">Instruments</a>
+            <a href="/python/reference/engines.html">Pricing engines</a>
+            <a href="/python/reference/models.html">Pricing models</a>
+            <a href="/python/certificates.html">Certificates</a>
+          </span>
+        </span>
+        <a href="https://homogenization.microprediction.org/">Mathematics</a>
+        <a href="https://github.com/microprediction/regimelib">GitHub</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <h1>regimeswitching</h1>
+    <p class="subtitle">Pricing libraries for models whose parameters switch with a hidden Markov regime.</p>
+    <p class="lead">A regime is a finite-state chain the market does not observe: a volatility level, a mean rate, a default intensity that is sometimes high and sometimes low. Any parameter of a standard model may take a different value in each regime. The libraries here price the usual instruments under such models, in QuantLib's mold, with a referee behind every number.</p>
+
+    <h2>Quick start</h2>
+<pre><code>pip install git+https://github.com/microprediction/regimelib
+
+import regimelib as rl
+chain  = rl.RegimeChain.twoState(3.0, 5.0)                       # switching rates out of each regime
+model  = rl.SwitchingVasicek(chain, r0=0.03, a=0.5, b=[0.06, 0.02], sigma=[0.015, 0.008])
+bond   = rl.ZeroCouponBond(5.0)
+bond.setPricingEngine(rl.FastSwitchingEngine(model, order=4, regime=0))
+bond.NPV(), bond.delta(), bond.gamma()</code></pre>
+
+    <h2>Three tiers of engine</h2>
+    <p>The <em>fast-switching expansion</em> expands the price in the mean holding time of the chain, to any order, with an initial layer that remembers the starting regime. Order zero is the averaged model; order one adds the Green&ndash;Kubo integral of the parameter fluctuations, the extra convexity the switching creates. The engine stops at the best truncation and warns when even that is rough.</p>
+    <p>The <em>numerical solution</em> of the same reduced system, without expansion, is the referee for the expansion and is exact up to quadrature for every model whose reduction is exact: Vasicek, CIR, Hull&ndash;White, G2, Black&ndash;Scholes, Heston, Merton, Bates, variance gamma, jumps, intensities and their baskets, equity with stochastic rates.</p>
+    <p><em>Grids and Monte Carlo</em> take the rest: American and barrier options, Bermudan swaptions, and the models whose reduction is only first order, such as a switched vol-of-vol.</p>
+
+    <h2>Every model has a frozen limit</h2>
+    <p>With every regime equal, each model is QuantLib's model, and each certificate in the test suite checks that limit against QuantLib's own engine before checking the switching case against an independent referee. The <a href="/python/certificates.html">certificates page</a> tabulates what is asserted.</p>
+
+    <div class="card-grid">
+      <a class="card" href="/python/"><h3>Python API &rarr;</h3><p>regimelib, the reference implementation: instruments, engines, models, calibration, closed forms.</p></a>
+      <a class="card" href="/languages.html"><h3>Languages &rarr;</h3><p>The reference and the ports, and the parity suite that keeps them identical.</p></a>
+      <a class="card" href="https://homogenization.microprediction.org/"><h3>Mathematics &rarr;</h3><p>The expansion, its initial layers and the Green&ndash;Kubo term, derived step by step with worked examples.</p></a>
+      <a class="card" href="/python/examples.html"><h3>Examples &rarr;</h3><p>A smile from a regime, which order to trust, default correlation from a common regime, a greek as a formula.</p></a>
+    </div>
+
+    <h2>Origin</h2>
+    <p>The expansion goes back to Cotton's 2001 thesis on fast-switching bond prices and survival probabilities; the libraries are its engineering, and <a href="https://homogenization.microprediction.org/">homogenization.microprediction.org</a> its mathematics. Comments are welcome through the GitHub issues.</p>
+
+  </main>
+  <footer>
+    <a href="https://github.com/microprediction/regimeswitching">Source</a> &middot;
+    Part of the <a href="https://repos.microprediction.org/">microprediction</a> family
+    (see also <a href="https://homogenization.microprediction.org/">homogenization</a>,
+    <a href="https://skaters.microprediction.org/">skaters</a>).
+  </footer>
+
+</body>
+</html>

@@ -1,0 +1,375 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pricing models &mdash; regimelib documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=9edc463e" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=d45e8c67"></script>
+      <script src="../_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Helpers and calibration" href="helpers.html" />
+    <link rel="prev" title="Pricing engines" href="engines.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            regimelib
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Getting started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started.html">Getting started</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started.html#installation">Installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started.html#importing">Importing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started.html#three-lines-of-pricing">Three lines of pricing</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Reference</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="basics.html">Basics</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="basics.html#regime-chains">Regime chains</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="basics.html#rl.RegimeChain"><code class="docutils literal notranslate"><span class="pre">rl.RegimeChain()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="basics.html#rl.RegimeChain.twoState"><code class="docutils literal notranslate"><span class="pre">rl.RegimeChain.twoState()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="basics.html#per-regime-parameters">Per-regime parameters</a></li>
+<li class="toctree-l2"><a class="reference internal" href="basics.html#maturities-and-dates">Maturities and dates</a></li>
+<li class="toctree-l2"><a class="reference internal" href="basics.html#instruments-engines-and-results">Instruments, engines and results</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="basics.html#instrument.setPricingEngine"><code class="docutils literal notranslate"><span class="pre">instrument.setPricingEngine()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="basics.html#instrument.NPV"><code class="docutils literal notranslate"><span class="pre">instrument.NPV()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="basics.html#instrument.delta"><code class="docutils literal notranslate"><span class="pre">instrument.delta()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="basics.html#regimes-and-the-starting-regime">Regimes and the starting regime</a></li>
+<li class="toctree-l2"><a class="reference internal" href="basics.html#warnings-and-diagnostics">Warnings and diagnostics</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="basics.html#rl.ExpansionWarning"><code class="docutils literal notranslate"><span class="pre">rl.ExpansionWarning</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="instruments.html">Instruments</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="instruments.html#bonds">Bonds</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="instruments.html#rl.ZeroCouponBond"><code class="docutils literal notranslate"><span class="pre">rl.ZeroCouponBond()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="instruments.html#rl.CouponBond"><code class="docutils literal notranslate"><span class="pre">rl.CouponBond()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="instruments.html#options">Options</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="instruments.html#rl.VanillaOption"><code class="docutils literal notranslate"><span class="pre">rl.VanillaOption()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="instruments.html#VanillaOption.impliedVolatility"><code class="docutils literal notranslate"><span class="pre">VanillaOption.impliedVolatility()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="instruments.html#rl.BarrierOption"><code class="docutils literal notranslate"><span class="pre">rl.BarrierOption()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="instruments.html#rl.ContinuousGeometricAsianOption"><code class="docutils literal notranslate"><span class="pre">rl.ContinuousGeometricAsianOption()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="instruments.html#interest-rate-options">Interest-rate options</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="instruments.html#rl.ZeroCouponBondOption"><code class="docutils literal notranslate"><span class="pre">rl.ZeroCouponBondOption()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="instruments.html#rl.CouponBondOption"><code class="docutils literal notranslate"><span class="pre">rl.CouponBondOption()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="instruments.html#rl.Swaption"><code class="docutils literal notranslate"><span class="pre">rl.Swaption()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="instruments.html#rl.CapFloor"><code class="docutils literal notranslate"><span class="pre">rl.CapFloor()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="instruments.html#credit">Credit</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="instruments.html#rl.CreditDefaultSwap"><code class="docutils literal notranslate"><span class="pre">rl.CreditDefaultSwap()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="instruments.html#rl.FirstToDefaultSwap"><code class="docutils literal notranslate"><span class="pre">rl.FirstToDefaultSwap()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="engines.html">Pricing engines</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="engines.html#the-expansion">The expansion</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="engines.html#rl.FastSwitchingEngine"><code class="docutils literal notranslate"><span class="pre">rl.FastSwitchingEngine()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="engines.html#the-numerical-solution">The numerical solution</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="engines.html#rl.NumericalSwitchingEngine"><code class="docutils literal notranslate"><span class="pre">rl.NumericalSwitchingEngine()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="engines.html#monte-carlo">Monte Carlo</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="engines.html#rl.MonteCarloSwitchingEngine"><code class="docutils literal notranslate"><span class="pre">rl.MonteCarloSwitchingEngine()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="engines.html#finite-differences">Finite differences</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="engines.html#rl.SwitchingFDEngine"><code class="docutils literal notranslate"><span class="pre">rl.SwitchingFDEngine()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="engines.html#the-first-order-tier">The first-order tier</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="engines.html#rl.FirstOrderFDEngine"><code class="docutils literal notranslate"><span class="pre">rl.FirstOrderFDEngine()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="engines.html#rl.SwitchingFDReferee"><code class="docutils literal notranslate"><span class="pre">rl.SwitchingFDReferee()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Pricing models</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#short-rate-models">Short-rate models</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#rl.SwitchingVasicek"><code class="docutils literal notranslate"><span class="pre">rl.SwitchingVasicek()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#rl.SwitchingVasicekJumps"><code class="docutils literal notranslate"><span class="pre">rl.SwitchingVasicekJumps()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#rl.SwitchingCoxIngersollRoss"><code class="docutils literal notranslate"><span class="pre">rl.SwitchingCoxIngersollRoss()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#rl.SwitchingHullWhite"><code class="docutils literal notranslate"><span class="pre">rl.SwitchingHullWhite()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#rl.SwitchingG2"><code class="docutils literal notranslate"><span class="pre">rl.SwitchingG2()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#rl.SwitchingIntensityBasket"><code class="docutils literal notranslate"><span class="pre">rl.SwitchingIntensityBasket()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#equity-models">Equity models</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#rl.SwitchingBlackScholesProcess"><code class="docutils literal notranslate"><span class="pre">rl.SwitchingBlackScholesProcess()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#rl.SwitchingHestonModel"><code class="docutils literal notranslate"><span class="pre">rl.SwitchingHestonModel()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#rl.SwitchingHestonVolOfVol"><code class="docutils literal notranslate"><span class="pre">rl.SwitchingHestonVolOfVol()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#rl.SwitchingMerton76Process"><code class="docutils literal notranslate"><span class="pre">rl.SwitchingMerton76Process()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#rl.SwitchingBatesModel"><code class="docutils literal notranslate"><span class="pre">rl.SwitchingBatesModel()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#rl.SwitchingVarianceGammaProcess"><code class="docutils literal notranslate"><span class="pre">rl.SwitchingVarianceGammaProcess()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#rl.SwitchingCEVProcess"><code class="docutils literal notranslate"><span class="pre">rl.SwitchingCEVProcess()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#hybrid-models">Hybrid models</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#rl.SwitchingEquityRates"><code class="docutils literal notranslate"><span class="pre">rl.SwitchingEquityRates()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="helpers.html">Helpers and calibration</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="helpers.html#rl.VolatilityHelper"><code class="docutils literal notranslate"><span class="pre">rl.VolatilityHelper()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="helpers.html#rl.calibrate"><code class="docutils literal notranslate"><span class="pre">rl.calibrate()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="symbolic.html">Symbolic</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="symbolic.html#rl.symbolic.VasicekTwoStateBond"><code class="docutils literal notranslate"><span class="pre">rl.symbolic.VasicekTwoStateBond</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="symbolic.html#rl.symbolic.VasicekBondFirstOrder"><code class="docutils literal notranslate"><span class="pre">rl.symbolic.VasicekBondFirstOrder</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="symbolic.html#rl.symbolic.CIRBondFirstOrder"><code class="docutils literal notranslate"><span class="pre">rl.symbolic.CIRBondFirstOrder</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="symbolic.html#rl.symbolic.VasicekJumpsBondFirstOrder"><code class="docutils literal notranslate"><span class="pre">rl.symbolic.VasicekJumpsBondFirstOrder</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="symbolic.html#parameterGreek"><code class="docutils literal notranslate"><span class="pre">parameterGreek()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="symbolic.html#rl.symbolic.TwoStateConstantForcing"><code class="docutils literal notranslate"><span class="pre">rl.symbolic.TwoStateConstantForcing</span></code></a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Background</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../background.html">The expansion</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../certificates.html">Certificates</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Examples</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../examples.html">Examples</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../examples.html#a-smile-from-a-regime">A smile from a regime</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../examples.html#which-order-to-trust">Which order to trust</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../examples.html#default-correlation-from-a-common-regime">Default correlation from a common regime</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../examples.html#a-greek-as-a-formula">A greek as a formula</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">regimelib</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Pricing models</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/reference/models.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="pricing-models">
+<h1>Pricing models<a class="headerlink" href="#pricing-models" title="Link to this heading"></a></h1>
+<p>Each model is QuantLib’s model with a <code class="docutils literal notranslate"><span class="pre">chain</span></code> in front of the parameters and a list where a parameter may switch.
+The third column of the tables says which parameters may switch; the rest are common to all regimes.</p>
+<section id="short-rate-models">
+<h2>Short-rate models<a class="headerlink" href="#short-rate-models" title="Link to this heading"></a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="rl.SwitchingVasicek">
+<span class="sig-prename descclassname"><span class="pre">rl.</span></span><span class="sig-name descname"><span class="pre">SwitchingVasicek</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">chain</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">r0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">a</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">b</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sigma</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#rl.SwitchingVasicek" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<p>QuantLib <code class="docutils literal notranslate"><span class="pre">Vasicek(r0,</span> <span class="pre">a,</span> <span class="pre">b,</span> <span class="pre">sigma)</span></code>: <code class="docutils literal notranslate"><span class="pre">dr</span> <span class="pre">=</span> <span class="pre">a</span> <span class="pre">(b</span> <span class="pre">-</span> <span class="pre">r)</span> <span class="pre">dt</span> <span class="pre">+</span> <span class="pre">sigma</span> <span class="pre">dW</span></code>. <code class="docutils literal notranslate"><span class="pre">b</span></code> and <code class="docutils literal notranslate"><span class="pre">sigma</span></code> may switch. Bonds,
+bond options, swaptions, caps and Bermudans; as an intensity, survival probabilities and CDS.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">rl</span><span class="o">.</span><span class="n">SwitchingVasicek</span><span class="p">(</span><span class="n">chain</span><span class="p">,</span> <span class="n">r0</span><span class="o">=</span><span class="mf">0.03</span><span class="p">,</span> <span class="n">a</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">b</span><span class="o">=</span><span class="p">[</span><span class="mf">0.06</span><span class="p">,</span> <span class="mf">0.02</span><span class="p">],</span> <span class="n">sigma</span><span class="o">=</span><span class="p">[</span><span class="mf">0.015</span><span class="p">,</span> <span class="mf">0.008</span><span class="p">])</span>
+</pre></div>
+</div>
+<dl class="py function">
+<dt class="sig sig-object py" id="rl.SwitchingVasicekJumps">
+<span class="sig-prename descclassname"><span class="pre">rl.</span></span><span class="sig-name descname"><span class="pre">SwitchingVasicekJumps</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">chain</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">r0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">a</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">b</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sigma</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">jumpIntensity</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">jumpMean</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#rl.SwitchingVasicekJumps" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<p>Vasicek with compound-Poisson jumps of exponential size (mean <code class="docutils literal notranslate"><span class="pre">jumpMean</span></code>) at intensity <code class="docutils literal notranslate"><span class="pre">jumpIntensity</span></code>, which may
+switch along with <code class="docutils literal notranslate"><span class="pre">b</span></code> and <code class="docutils literal notranslate"><span class="pre">sigma</span></code>. The reduction is exact. QuantLib has no jump short-rate model; the frozen
+limit is checked against the affine closed form.</p>
+<dl class="py function">
+<dt class="sig sig-object py" id="rl.SwitchingCoxIngersollRoss">
+<span class="sig-prename descclassname"><span class="pre">rl.</span></span><span class="sig-name descname"><span class="pre">SwitchingCoxIngersollRoss</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">chain</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">r0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">theta</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">k</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sigma</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#rl.SwitchingCoxIngersollRoss" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<p>QuantLib <code class="docutils literal notranslate"><span class="pre">CoxIngersollRoss(r0,</span> <span class="pre">theta,</span> <span class="pre">k,</span> <span class="pre">sigma)</span></code>: <code class="docutils literal notranslate"><span class="pre">dr</span> <span class="pre">=</span> <span class="pre">k</span> <span class="pre">(theta</span> <span class="pre">-</span> <span class="pre">r)</span> <span class="pre">dt</span> <span class="pre">+</span> <span class="pre">sigma</span> <span class="pre">sqrt(r)</span> <span class="pre">dW</span></code>. <code class="docutils literal notranslate"><span class="pre">theta</span></code> may
+switch. Bonds and Bermudan swaptions on the rate grid; as an intensity, survival probabilities and CDS.</p>
+<dl class="py function">
+<dt class="sig sig-object py" id="rl.SwitchingHullWhite">
+<span class="sig-prename descclassname"><span class="pre">rl.</span></span><span class="sig-name descname"><span class="pre">SwitchingHullWhite</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">chain</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">termStructure</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">a</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sigma</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#rl.SwitchingHullWhite" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<p>QuantLib <code class="docutils literal notranslate"><span class="pre">HullWhite(termStructure,</span> <span class="pre">a,</span> <span class="pre">sigma)</span></code> with <code class="docutils literal notranslate"><span class="pre">sigma</span></code> switching. <code class="docutils literal notranslate"><span class="pre">termStructure</span></code> is a flat rate, a
+callable <code class="docutils literal notranslate"><span class="pre">t</span> <span class="pre">-&gt;</span> <span class="pre">discount</span> <span class="pre">factor</span></code> or a QuantLib <code class="docutils literal notranslate"><span class="pre">YieldTermStructureHandle</span></code>. The fitted drift uses the
+stationary-average variance, so the averaged model reproduces the curve exactly and the expansion adds the
+switching corrections.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">ts</span> <span class="o">=</span> <span class="n">ql</span><span class="o">.</span><span class="n">YieldTermStructureHandle</span><span class="p">(</span><span class="n">ql</span><span class="o">.</span><span class="n">FlatForward</span><span class="p">(</span><span class="n">today</span><span class="p">,</span> <span class="mf">0.03</span><span class="p">,</span> <span class="n">ql</span><span class="o">.</span><span class="n">Actual365Fixed</span><span class="p">()))</span>
+<span class="n">hw</span> <span class="o">=</span> <span class="n">rl</span><span class="o">.</span><span class="n">SwitchingHullWhite</span><span class="p">(</span><span class="n">chain</span><span class="p">,</span> <span class="n">ts</span><span class="p">,</span> <span class="n">a</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">sigma</span><span class="o">=</span><span class="p">[</span><span class="mf">0.02</span><span class="p">,</span> <span class="mf">0.006</span><span class="p">])</span>
+</pre></div>
+</div>
+<dl class="py function">
+<dt class="sig sig-object py" id="rl.SwitchingG2">
+<span class="sig-prename descclassname"><span class="pre">rl.</span></span><span class="sig-name descname"><span class="pre">SwitchingG2</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">chain</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">termStructure</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">a</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sigma</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">b</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">eta</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rho</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#rl.SwitchingG2" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<p>QuantLib <code class="docutils literal notranslate"><span class="pre">G2(termStructure,</span> <span class="pre">a,</span> <span class="pre">sigma,</span> <span class="pre">b,</span> <span class="pre">eta,</span> <span class="pre">rho)</span></code>; <code class="docutils literal notranslate"><span class="pre">sigma</span></code>, <code class="docutils literal notranslate"><span class="pre">eta</span></code> and <code class="docutils literal notranslate"><span class="pre">rho</span></code> may switch. Bonds, bond
+options and caps by the characteristic-function engines; swaptions and Bermudans on the two-factor grid.</p>
+<dl class="py function">
+<dt class="sig sig-object py" id="rl.SwitchingIntensityBasket">
+<span class="sig-prename descclassname"><span class="pre">rl.</span></span><span class="sig-name descname"><span class="pre">SwitchingIntensityBasket</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">models</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#rl.SwitchingIntensityBasket" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<p>Several intensities (Vasicek or CIR) driven by one chain, with independent diffusions. <code class="docutils literal notranslate"><span class="pre">ZeroCouponBond</span></code> is the
+joint survival probability and <code class="docutils literal notranslate"><span class="pre">CreditDefaultSwap</span></code> a first-to-default swap; <code class="docutils literal notranslate"><span class="pre">defaultCorrelation(t)</span></code> measures
+the dependence the common regime creates. The frozen limit factorises into the marginal survivals.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">basket</span> <span class="o">=</span> <span class="n">rl</span><span class="o">.</span><span class="n">SwitchingIntensityBasket</span><span class="p">([</span><span class="n">rl</span><span class="o">.</span><span class="n">SwitchingVasicek</span><span class="p">(</span><span class="n">chain</span><span class="p">,</span> <span class="mf">0.02</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="p">[</span><span class="mf">0.01</span><span class="p">,</span> <span class="mf">0.06</span><span class="p">],</span> <span class="mf">0.003</span><span class="p">),</span>
+                                      <span class="n">rl</span><span class="o">.</span><span class="n">SwitchingVasicek</span><span class="p">(</span><span class="n">chain</span><span class="p">,</span> <span class="mf">0.02</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="p">[</span><span class="mf">0.01</span><span class="p">,</span> <span class="mf">0.06</span><span class="p">],</span> <span class="mf">0.003</span><span class="p">)])</span>
+<span class="n">basket</span><span class="o">.</span><span class="n">defaultCorrelation</span><span class="p">(</span><span class="mf">5.0</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="equity-models">
+<h2>Equity models<a class="headerlink" href="#equity-models" title="Link to this heading"></a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="rl.SwitchingBlackScholesProcess">
+<span class="sig-prename descclassname"><span class="pre">rl.</span></span><span class="sig-name descname"><span class="pre">SwitchingBlackScholesProcess</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">chain</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">S0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">r</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">q</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sigma</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#rl.SwitchingBlackScholesProcess" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<p>QuantLib <code class="docutils literal notranslate"><span class="pre">BlackScholesMertonProcess</span></code> with <code class="docutils literal notranslate"><span class="pre">sigma</span></code> switching. Vanilla, digital, Asian, barrier and American
+options; the two-regime characteristic function is available in closed form (<a class="reference internal" href="symbolic.html"><span class="doc">Symbolic</span></a>).</p>
+<dl class="py function">
+<dt class="sig sig-object py" id="rl.SwitchingHestonModel">
+<span class="sig-prename descclassname"><span class="pre">rl.</span></span><span class="sig-name descname"><span class="pre">SwitchingHestonModel</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">chain</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">S0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">r</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">q</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">v0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">kappa</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">theta</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sigma</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rho</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#rl.SwitchingHestonModel" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<p>QuantLib <code class="docutils literal notranslate"><span class="pre">HestonModel</span></code> with the long-run variance <code class="docutils literal notranslate"><span class="pre">theta</span></code> switching. The reduction is exact; <code class="docutils literal notranslate"><span class="pre">vega</span></code> is the
+derivative in <code class="docutils literal notranslate"><span class="pre">v0</span></code>.</p>
+<dl class="py function">
+<dt class="sig sig-object py" id="rl.SwitchingHestonVolOfVol">
+<span class="sig-prename descclassname"><span class="pre">rl.</span></span><span class="sig-name descname"><span class="pre">SwitchingHestonVolOfVol</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">chain</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">S0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">r</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">q</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">v0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">kappa</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">theta</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">xi</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rho</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#rl.SwitchingHestonVolOfVol" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<p>Heston with the volatility of variance <code class="docutils literal notranslate"><span class="pre">xi</span></code> switching. The switched operators do not reduce exactly, so this model
+is priced by <a class="reference internal" href="engines.html#rl.FirstOrderFDEngine" title="rl.FirstOrderFDEngine"><code class="xref py py-func docutils literal notranslate"><span class="pre">rl.FirstOrderFDEngine()</span></code></a> on a <code class="docutils literal notranslate"><span class="pre">(log</span> <span class="pre">S,</span> <span class="pre">v)</span></code> grid, <code class="docutils literal notranslate"><span class="pre">n</span> <span class="pre">=</span> <span class="pre">(nx,</span> <span class="pre">nv)</span></code>.</p>
+<dl class="py function">
+<dt class="sig sig-object py" id="rl.SwitchingMerton76Process">
+<span class="sig-prename descclassname"><span class="pre">rl.</span></span><span class="sig-name descname"><span class="pre">SwitchingMerton76Process</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">chain</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">S0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">r</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">q</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sigma</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">jumpIntensity</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">logJumpMean</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">logJumpVol</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#rl.SwitchingMerton76Process" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<p>QuantLib <code class="docutils literal notranslate"><span class="pre">Merton76Process</span></code>; <code class="docutils literal notranslate"><span class="pre">sigma</span></code> and <code class="docutils literal notranslate"><span class="pre">jumpIntensity</span></code> may switch.</p>
+<dl class="py function">
+<dt class="sig sig-object py" id="rl.SwitchingBatesModel">
+<span class="sig-prename descclassname"><span class="pre">rl.</span></span><span class="sig-name descname"><span class="pre">SwitchingBatesModel</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">chain</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">S0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">r</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">q</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">v0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">kappa</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">theta</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sigma</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rho</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">jumpIntensity</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">logJumpMean</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">logJumpVol</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#rl.SwitchingBatesModel" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<p>QuantLib <code class="docutils literal notranslate"><span class="pre">BatesModel</span></code>; <code class="docutils literal notranslate"><span class="pre">theta</span></code> and <code class="docutils literal notranslate"><span class="pre">jumpIntensity</span></code> may switch.</p>
+<dl class="py function">
+<dt class="sig sig-object py" id="rl.SwitchingVarianceGammaProcess">
+<span class="sig-prename descclassname"><span class="pre">rl.</span></span><span class="sig-name descname"><span class="pre">SwitchingVarianceGammaProcess</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">chain</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">S0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">r</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">q</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sigma</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nu</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">theta</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#rl.SwitchingVarianceGammaProcess" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<p>QuantLib <code class="docutils literal notranslate"><span class="pre">VarianceGammaProcess</span></code>; all three parameters may switch.</p>
+<dl class="py function">
+<dt class="sig sig-object py" id="rl.SwitchingCEVProcess">
+<span class="sig-prename descclassname"><span class="pre">rl.</span></span><span class="sig-name descname"><span class="pre">SwitchingCEVProcess</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">chain</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">S0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">r</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">q</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sigma</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">beta</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#rl.SwitchingCEVProcess" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<p>QuantLib <code class="docutils literal notranslate"><span class="pre">CEVProcess</span></code> with <code class="docutils literal notranslate"><span class="pre">sigma</span></code> switching; first-order tier (the switched diffusion does not commute with the
+drift). Frozen limit: <code class="docutils literal notranslate"><span class="pre">AnalyticCEVEngine</span></code>.</p>
+</section>
+<section id="hybrid-models">
+<h2>Hybrid models<a class="headerlink" href="#hybrid-models" title="Link to this heading"></a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="rl.SwitchingEquityRates">
+<span class="sig-prename descclassname"><span class="pre">rl.</span></span><span class="sig-name descname"><span class="pre">SwitchingEquityRates</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">equity</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rates</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rho</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#rl.SwitchingEquityRates" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<p>An equity (<code class="docutils literal notranslate"><span class="pre">SwitchingBlackScholesProcess</span></code> or <code class="docutils literal notranslate"><span class="pre">SwitchingHestonModel</span></code>) with stochastic rates (<code class="docutils literal notranslate"><span class="pre">SwitchingVasicek</span></code>
+or <code class="docutils literal notranslate"><span class="pre">SwitchingHullWhite</span></code>) on one chain, so that the discount and the return are dependent through the regime path.
+<code class="docutils literal notranslate"><span class="pre">rho</span></code> is the equity–rate Brownian correlation, allowed for the Black–Scholes equity. Vanilla options by Lewis’s
+formula with the discounted characteristic function; American options by <a class="reference internal" href="engines.html#rl.SwitchingFDEngine" title="rl.SwitchingFDEngine"><code class="xref py py-func docutils literal notranslate"><span class="pre">rl.SwitchingFDEngine()</span></code></a> on a
+<code class="docutils literal notranslate"><span class="pre">(log</span> <span class="pre">S,</span> <span class="pre">r)</span></code> grid, <code class="docutils literal notranslate"><span class="pre">n</span> <span class="pre">=</span> <span class="pre">(nx,</span> <span class="pre">nr)</span></code>, for the Black–Scholes equity with Vasicek rates. Frozen limit: <code class="docutils literal notranslate"><span class="pre">AnalyticBSMHullWhiteEngine</span></code>,
+<code class="docutils literal notranslate"><span class="pre">AnalyticHestonHullWhiteEngine</span></code>.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">hybrid</span> <span class="o">=</span> <span class="n">rl</span><span class="o">.</span><span class="n">SwitchingEquityRates</span><span class="p">(</span><span class="n">rl</span><span class="o">.</span><span class="n">SwitchingBlackScholesProcess</span><span class="p">(</span><span class="n">chain</span><span class="p">,</span> <span class="mf">100.0</span><span class="p">,</span> <span class="mf">0.03</span><span class="p">,</span> <span class="mf">0.01</span><span class="p">,</span> <span class="p">[</span><span class="mf">0.35</span><span class="p">,</span> <span class="mf">0.15</span><span class="p">]),</span>
+                                 <span class="n">rl</span><span class="o">.</span><span class="n">SwitchingVasicek</span><span class="p">(</span><span class="n">chain</span><span class="p">,</span> <span class="mf">0.03</span><span class="p">,</span> <span class="mf">0.4</span><span class="p">,</span> <span class="p">[</span><span class="mf">0.06</span><span class="p">,</span> <span class="mf">0.01</span><span class="p">],</span> <span class="p">[</span><span class="mf">0.02</span><span class="p">,</span> <span class="mf">0.008</span><span class="p">]),</span> <span class="n">rho</span><span class="o">=</span><span class="mf">0.3</span><span class="p">)</span>
+<span class="n">option</span><span class="o">.</span><span class="n">setPricingEngine</span><span class="p">(</span><span class="n">rl</span><span class="o">.</span><span class="n">NumericalSwitchingEngine</span><span class="p">(</span><span class="n">hybrid</span><span class="p">,</span> <span class="n">regime</span><span class="o">=</span><span class="mi">1</span><span class="p">))</span>
+</pre></div>
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="engines.html" class="btn btn-neutral float-left" title="Pricing engines" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="helpers.html" class="btn btn-neutral float-right" title="Helpers and calibration" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2026, Peter Cotton.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

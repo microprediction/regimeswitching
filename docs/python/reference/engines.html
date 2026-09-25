@@ -1,0 +1,345 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pricing engines &mdash; regimelib documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=9edc463e" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=d45e8c67"></script>
+      <script src="../_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Pricing models" href="models.html" />
+    <link rel="prev" title="Instruments" href="instruments.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            regimelib
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Getting started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started.html">Getting started</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started.html#installation">Installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started.html#importing">Importing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started.html#three-lines-of-pricing">Three lines of pricing</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Reference</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="basics.html">Basics</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="basics.html#regime-chains">Regime chains</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="basics.html#rl.RegimeChain"><code class="docutils literal notranslate"><span class="pre">rl.RegimeChain()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="basics.html#rl.RegimeChain.twoState"><code class="docutils literal notranslate"><span class="pre">rl.RegimeChain.twoState()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="basics.html#per-regime-parameters">Per-regime parameters</a></li>
+<li class="toctree-l2"><a class="reference internal" href="basics.html#maturities-and-dates">Maturities and dates</a></li>
+<li class="toctree-l2"><a class="reference internal" href="basics.html#instruments-engines-and-results">Instruments, engines and results</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="basics.html#instrument.setPricingEngine"><code class="docutils literal notranslate"><span class="pre">instrument.setPricingEngine()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="basics.html#instrument.NPV"><code class="docutils literal notranslate"><span class="pre">instrument.NPV()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="basics.html#instrument.delta"><code class="docutils literal notranslate"><span class="pre">instrument.delta()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="basics.html#regimes-and-the-starting-regime">Regimes and the starting regime</a></li>
+<li class="toctree-l2"><a class="reference internal" href="basics.html#warnings-and-diagnostics">Warnings and diagnostics</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="basics.html#rl.ExpansionWarning"><code class="docutils literal notranslate"><span class="pre">rl.ExpansionWarning</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="instruments.html">Instruments</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="instruments.html#bonds">Bonds</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="instruments.html#rl.ZeroCouponBond"><code class="docutils literal notranslate"><span class="pre">rl.ZeroCouponBond()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="instruments.html#rl.CouponBond"><code class="docutils literal notranslate"><span class="pre">rl.CouponBond()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="instruments.html#options">Options</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="instruments.html#rl.VanillaOption"><code class="docutils literal notranslate"><span class="pre">rl.VanillaOption()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="instruments.html#VanillaOption.impliedVolatility"><code class="docutils literal notranslate"><span class="pre">VanillaOption.impliedVolatility()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="instruments.html#rl.BarrierOption"><code class="docutils literal notranslate"><span class="pre">rl.BarrierOption()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="instruments.html#rl.ContinuousGeometricAsianOption"><code class="docutils literal notranslate"><span class="pre">rl.ContinuousGeometricAsianOption()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="instruments.html#interest-rate-options">Interest-rate options</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="instruments.html#rl.ZeroCouponBondOption"><code class="docutils literal notranslate"><span class="pre">rl.ZeroCouponBondOption()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="instruments.html#rl.CouponBondOption"><code class="docutils literal notranslate"><span class="pre">rl.CouponBondOption()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="instruments.html#rl.Swaption"><code class="docutils literal notranslate"><span class="pre">rl.Swaption()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="instruments.html#rl.CapFloor"><code class="docutils literal notranslate"><span class="pre">rl.CapFloor()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="instruments.html#credit">Credit</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="instruments.html#rl.CreditDefaultSwap"><code class="docutils literal notranslate"><span class="pre">rl.CreditDefaultSwap()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="instruments.html#rl.FirstToDefaultSwap"><code class="docutils literal notranslate"><span class="pre">rl.FirstToDefaultSwap()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Pricing engines</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#the-expansion">The expansion</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#rl.FastSwitchingEngine"><code class="docutils literal notranslate"><span class="pre">rl.FastSwitchingEngine()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#the-numerical-solution">The numerical solution</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#rl.NumericalSwitchingEngine"><code class="docutils literal notranslate"><span class="pre">rl.NumericalSwitchingEngine()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#monte-carlo">Monte Carlo</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#rl.MonteCarloSwitchingEngine"><code class="docutils literal notranslate"><span class="pre">rl.MonteCarloSwitchingEngine()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#finite-differences">Finite differences</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#rl.SwitchingFDEngine"><code class="docutils literal notranslate"><span class="pre">rl.SwitchingFDEngine()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#the-first-order-tier">The first-order tier</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#rl.FirstOrderFDEngine"><code class="docutils literal notranslate"><span class="pre">rl.FirstOrderFDEngine()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#rl.SwitchingFDReferee"><code class="docutils literal notranslate"><span class="pre">rl.SwitchingFDReferee()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="models.html">Pricing models</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="models.html#short-rate-models">Short-rate models</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="models.html#rl.SwitchingVasicek"><code class="docutils literal notranslate"><span class="pre">rl.SwitchingVasicek()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="models.html#rl.SwitchingVasicekJumps"><code class="docutils literal notranslate"><span class="pre">rl.SwitchingVasicekJumps()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="models.html#rl.SwitchingCoxIngersollRoss"><code class="docutils literal notranslate"><span class="pre">rl.SwitchingCoxIngersollRoss()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="models.html#rl.SwitchingHullWhite"><code class="docutils literal notranslate"><span class="pre">rl.SwitchingHullWhite()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="models.html#rl.SwitchingG2"><code class="docutils literal notranslate"><span class="pre">rl.SwitchingG2()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="models.html#rl.SwitchingIntensityBasket"><code class="docutils literal notranslate"><span class="pre">rl.SwitchingIntensityBasket()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="models.html#equity-models">Equity models</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="models.html#rl.SwitchingBlackScholesProcess"><code class="docutils literal notranslate"><span class="pre">rl.SwitchingBlackScholesProcess()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="models.html#rl.SwitchingHestonModel"><code class="docutils literal notranslate"><span class="pre">rl.SwitchingHestonModel()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="models.html#rl.SwitchingHestonVolOfVol"><code class="docutils literal notranslate"><span class="pre">rl.SwitchingHestonVolOfVol()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="models.html#rl.SwitchingMerton76Process"><code class="docutils literal notranslate"><span class="pre">rl.SwitchingMerton76Process()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="models.html#rl.SwitchingBatesModel"><code class="docutils literal notranslate"><span class="pre">rl.SwitchingBatesModel()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="models.html#rl.SwitchingVarianceGammaProcess"><code class="docutils literal notranslate"><span class="pre">rl.SwitchingVarianceGammaProcess()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="models.html#rl.SwitchingCEVProcess"><code class="docutils literal notranslate"><span class="pre">rl.SwitchingCEVProcess()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="models.html#hybrid-models">Hybrid models</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="models.html#rl.SwitchingEquityRates"><code class="docutils literal notranslate"><span class="pre">rl.SwitchingEquityRates()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="helpers.html">Helpers and calibration</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="helpers.html#rl.VolatilityHelper"><code class="docutils literal notranslate"><span class="pre">rl.VolatilityHelper()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="helpers.html#rl.calibrate"><code class="docutils literal notranslate"><span class="pre">rl.calibrate()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="symbolic.html">Symbolic</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="symbolic.html#rl.symbolic.VasicekTwoStateBond"><code class="docutils literal notranslate"><span class="pre">rl.symbolic.VasicekTwoStateBond</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="symbolic.html#rl.symbolic.VasicekBondFirstOrder"><code class="docutils literal notranslate"><span class="pre">rl.symbolic.VasicekBondFirstOrder</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="symbolic.html#rl.symbolic.CIRBondFirstOrder"><code class="docutils literal notranslate"><span class="pre">rl.symbolic.CIRBondFirstOrder</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="symbolic.html#rl.symbolic.VasicekJumpsBondFirstOrder"><code class="docutils literal notranslate"><span class="pre">rl.symbolic.VasicekJumpsBondFirstOrder</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="symbolic.html#parameterGreek"><code class="docutils literal notranslate"><span class="pre">parameterGreek()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="symbolic.html#rl.symbolic.TwoStateConstantForcing"><code class="docutils literal notranslate"><span class="pre">rl.symbolic.TwoStateConstantForcing</span></code></a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Background</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../background.html">The expansion</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../certificates.html">Certificates</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Examples</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../examples.html">Examples</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../examples.html#a-smile-from-a-regime">A smile from a regime</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../examples.html#which-order-to-trust">Which order to trust</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../examples.html#default-correlation-from-a-common-regime">Default correlation from a common regime</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../examples.html#a-greek-as-a-formula">A greek as a formula</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">regimelib</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Pricing engines</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/reference/engines.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="pricing-engines">
+<h1>Pricing engines<a class="headerlink" href="#pricing-engines" title="Link to this heading"></a></h1>
+<p>Every engine takes the model and the starting <code class="docutils literal notranslate"><span class="pre">regime</span></code>. The characteristic-function engines price bonds, European
+options, digitals, geometric Asians, bond options, swaptions, caps and credit default swaps; the grid engines price
+early exercise and barriers; Monte Carlo is a referee.</p>
+<section id="the-expansion">
+<h2>The expansion<a class="headerlink" href="#the-expansion" title="Link to this heading"></a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="rl.FastSwitchingEngine">
+<span class="sig-prename descclassname"><span class="pre">rl.</span></span><span class="sig-name descname"><span class="pre">FastSwitchingEngine</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">model</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">order</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">4</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">regime</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nodes</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">96</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tol</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1e-10</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">maxOrder</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">12</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rtol</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1e-12</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#rl.FastSwitchingEngine" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<p>The fast-switching expansion of the reduced system <code class="docutils literal notranslate"><span class="pre">a'</span> <span class="pre">=</span> <span class="pre">(Q</span> <span class="pre">+</span> <span class="pre">diag</span> <span class="pre">g)</span> <span class="pre">a</span></code> in the mean holding time of the chain,
+<code class="docutils literal notranslate"><span class="pre">n</span> <span class="pre">/</span> <span class="pre">-trace</span> <span class="pre">Q</span></code>, through <code class="docutils literal notranslate"><span class="pre">order</span></code> terms with the initial layer that carries the starting regime. <code class="docutils literal notranslate"><span class="pre">order=None</span></code>
+adds terms until successive orders agree to <code class="docutils literal notranslate"><span class="pre">tol</span></code> or the series stops improving — the best truncation of an
+asymptotic series — and records <code class="docutils literal notranslate"><span class="pre">orderUsed</span></code> and <code class="docutils literal notranslate"><span class="pre">lastIncrement</span></code> after <code class="docutils literal notranslate"><span class="pre">NPV()</span></code>. At Fourier nodes where the
+series diverges (large forcing at high frequency) the reduced system is solved numerically instead and the count is
+reported; see <a class="reference internal" href="basics.html#rl.ExpansionWarning" title="rl.ExpansionWarning"><code class="xref py py-class docutils literal notranslate"><span class="pre">rl.ExpansionWarning</span></code></a>.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">engine</span> <span class="o">=</span> <span class="n">rl</span><span class="o">.</span><span class="n">FastSwitchingEngine</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">order</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">regime</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">option</span><span class="o">.</span><span class="n">setPricingEngine</span><span class="p">(</span><span class="n">engine</span><span class="p">)</span>
+<span class="n">option</span><span class="o">.</span><span class="n">NPV</span><span class="p">()</span>
+<span class="n">engine</span><span class="o">.</span><span class="n">orderUsed</span><span class="p">,</span> <span class="n">engine</span><span class="o">.</span><span class="n">lastIncrement</span>
+<span class="n">option</span><span class="o">.</span><span class="n">_result</span><span class="p">(</span><span class="s2">"diagnostics"</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="the-numerical-solution">
+<h2>The numerical solution<a class="headerlink" href="#the-numerical-solution" title="Link to this heading"></a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="rl.NumericalSwitchingEngine">
+<span class="sig-prename descclassname"><span class="pre">rl.</span></span><span class="sig-name descname"><span class="pre">NumericalSwitchingEngine</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">model</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">regime</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nodes</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">96</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rtol</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1e-12</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#rl.NumericalSwitchingEngine" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<p>The reduced system solved without expansion: the matrix exponential when the forcing is constant in time
+(Black–Scholes, Merton, variance gamma), an ODE solver (DOP853) otherwise. The terminal vectors are memoised across
+strikes at each maturity, which is what makes calibration fast. This is the referee for the expansion with
+switching on, and it is exact up to quadrature for every model in the all-orders tier.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">option</span><span class="o">.</span><span class="n">setPricingEngine</span><span class="p">(</span><span class="n">rl</span><span class="o">.</span><span class="n">NumericalSwitchingEngine</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">regime</span><span class="o">=</span><span class="mi">1</span><span class="p">))</span>
+</pre></div>
+</div>
+</section>
+<section id="monte-carlo">
+<h2>Monte Carlo<a class="headerlink" href="#monte-carlo" title="Link to this heading"></a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="rl.MonteCarloSwitchingEngine">
+<span class="sig-prename descclassname"><span class="pre">rl.</span></span><span class="sig-name descname"><span class="pre">MonteCarloSwitchingEngine</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">model</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">regime</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">paths</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">100000</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">seed</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#rl.MonteCarloSwitchingEngine" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<p>A grid-free referee: regime paths are sampled exactly and each path is priced in closed form (Vasicek bonds,
+Black–Scholes options). <code class="docutils literal notranslate"><span class="pre">standardError</span></code> is set after <code class="docutils literal notranslate"><span class="pre">NPV()</span></code>.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">mc</span> <span class="o">=</span> <span class="n">rl</span><span class="o">.</span><span class="n">MonteCarloSwitchingEngine</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">regime</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">paths</span><span class="o">=</span><span class="mi">200000</span><span class="p">,</span> <span class="n">seed</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">bond</span><span class="o">.</span><span class="n">setPricingEngine</span><span class="p">(</span><span class="n">mc</span><span class="p">)</span>
+<span class="n">bond</span><span class="o">.</span><span class="n">NPV</span><span class="p">(),</span> <span class="n">mc</span><span class="o">.</span><span class="n">standardError</span>
+</pre></div>
+</div>
+</section>
+<section id="finite-differences">
+<h2>Finite differences<a class="headerlink" href="#finite-differences" title="Link to this heading"></a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="rl.SwitchingFDEngine">
+<span class="sig-prename descclassname"><span class="pre">rl.</span></span><span class="sig-name descname"><span class="pre">SwitchingFDEngine</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">model</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">regime</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1001</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">steps</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">400</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">width</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">stretch</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#rl.SwitchingFDEngine" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<p>Time-stepping on the coupled system <code class="docutils literal notranslate"><span class="pre">u_i'</span> <span class="pre">=</span> <span class="pre">L_i</span> <span class="pre">u_i</span> <span class="pre">+</span> <span class="pre">sum_j</span> <span class="pre">Q_ij</span> <span class="pre">u_j</span></code>, Rannacher’s implicit half-steps followed by
+Crank–Nicolson. American exercise projects onto the payoff after every step; a knock-out barrier truncates the grid
+at the barrier node; Bermudan swaptions and coupon-bond options compare with the exercise value, per regime, at
+each exercise date on a short-rate grid (Vasicek, CIR, Hull–White in its zero-mean factor, G2 on a two-factor grid
+with <code class="docutils literal notranslate"><span class="pre">n</span> <span class="pre">=</span> <span class="pre">(nx,</span> <span class="pre">ny)</span></code>); American options under the hybrid model on a <code class="docutils literal notranslate"><span class="pre">(log</span> <span class="pre">S,</span> <span class="pre">r)</span></code> grid. <code class="docutils literal notranslate"><span class="pre">stretch</span></code> concentrates the
+nodes of a two-dimensional grid around the strike and the starting factor by a sinh map (the width of the dense
+region as a fraction of the interval; 0.15 halves the Heston vol-of-vol grid error at a given node count); uniform
+when <code class="docutils literal notranslate"><span class="pre">None</span></code>, which suits swaptions, whose exercise region is broad. <code class="docutils literal notranslate"><span class="pre">delta</span></code>, <code class="docutils literal notranslate"><span class="pre">gamma</span></code> and <code class="docutils literal notranslate"><span class="pre">theta</span></code> come from the grid for equity options.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">american</span> <span class="o">=</span> <span class="n">rl</span><span class="o">.</span><span class="n">VanillaOption</span><span class="p">((</span><span class="s2">"put"</span><span class="p">,</span> <span class="mf">105.0</span><span class="p">),</span> <span class="n">exercise</span><span class="o">=</span><span class="s2">"american"</span><span class="p">,</span> <span class="n">maturity</span><span class="o">=</span><span class="mf">1.0</span><span class="p">)</span>
+<span class="n">american</span><span class="o">.</span><span class="n">setPricingEngine</span><span class="p">(</span><span class="n">rl</span><span class="o">.</span><span class="n">SwitchingFDEngine</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">regime</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">n</span><span class="o">=</span><span class="mi">1601</span><span class="p">,</span> <span class="n">steps</span><span class="o">=</span><span class="mi">800</span><span class="p">))</span>
+<span class="n">american</span><span class="o">.</span><span class="n">NPV</span><span class="p">(),</span> <span class="n">american</span><span class="o">.</span><span class="n">delta</span><span class="p">(),</span> <span class="n">american</span><span class="o">.</span><span class="n">gamma</span><span class="p">()</span>
+</pre></div>
+</div>
+</section>
+<section id="the-first-order-tier">
+<h2>The first-order tier<a class="headerlink" href="#the-first-order-tier" title="Link to this heading"></a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="rl.FirstOrderFDEngine">
+<span class="sig-prename descclassname"><span class="pre">rl.</span></span><span class="sig-name descname"><span class="pre">FirstOrderFDEngine</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">model</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">regime</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">801</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">width</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">warnAbove</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.03</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">stretch</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#rl.FirstOrderFDEngine" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<p>For models whose reduction is not exact (<code class="docutils literal notranslate"><span class="pre">SwitchingCEVProcess</span></code>, <code class="docutils literal notranslate"><span class="pre">SwitchingHestonVolOfVol</span></code>): the averaged
+operator, the Green–Kubo correction <code class="docutils literal notranslate"><span class="pre">sum</span> <span class="pre">K_jk</span> <span class="pre">A_j</span> <span class="pre">A_k</span></code> carried by an augmented linear system, and the memory term
+of the starting regime, all at first order in the holding time. After <code class="docutils literal notranslate"><span class="pre">NPV()</span></code> the engine exposes <code class="docutils literal notranslate"><span class="pre">averaged</span></code>,
+<code class="docutils literal notranslate"><span class="pre">correction</span></code> and <code class="docutils literal notranslate"><span class="pre">memory</span></code> and <code class="docutils literal notranslate"><span class="pre">diagnostics</span></code> with the relative size of the correction and <code class="docutils literal notranslate"><span class="pre">estimatedError</span></code>,
+about its square; it warns above <code class="docutils literal notranslate"><span class="pre">warnAbove</span></code>.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">cev</span> <span class="o">=</span> <span class="n">rl</span><span class="o">.</span><span class="n">SwitchingCEVProcess</span><span class="p">(</span><span class="n">chain</span><span class="p">,</span> <span class="mf">100.0</span><span class="p">,</span> <span class="mf">0.03</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="n">sigma</span><span class="o">=</span><span class="p">[</span><span class="mf">0.35</span><span class="p">,</span> <span class="mf">0.15</span><span class="p">],</span> <span class="n">beta</span><span class="o">=</span><span class="mf">0.7</span><span class="p">)</span>
+<span class="n">engine</span> <span class="o">=</span> <span class="n">rl</span><span class="o">.</span><span class="n">FirstOrderFDEngine</span><span class="p">(</span><span class="n">cev</span><span class="p">,</span> <span class="n">regime</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">n</span><span class="o">=</span><span class="mi">801</span><span class="p">)</span>
+<span class="n">option</span><span class="o">.</span><span class="n">setPricingEngine</span><span class="p">(</span><span class="n">engine</span><span class="p">)</span>
+<span class="n">option</span><span class="o">.</span><span class="n">NPV</span><span class="p">()</span>
+<span class="n">engine</span><span class="o">.</span><span class="n">averaged</span><span class="p">,</span> <span class="n">engine</span><span class="o">.</span><span class="n">correction</span><span class="p">,</span> <span class="n">engine</span><span class="o">.</span><span class="n">memory</span><span class="p">,</span> <span class="n">engine</span><span class="o">.</span><span class="n">diagnostics</span>
+</pre></div>
+</div>
+<dl class="py function">
+<dt class="sig sig-object py" id="rl.SwitchingFDReferee">
+<span class="sig-prename descclassname"><span class="pre">rl.</span></span><span class="sig-name descname"><span class="pre">SwitchingFDReferee</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">model</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">regime</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">801</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">width</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#rl.SwitchingFDReferee" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<p>The switching model solved without expansion on the same grid, the referee for the first-order tier.</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="instruments.html" class="btn btn-neutral float-left" title="Instruments" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="models.html" class="btn btn-neutral float-right" title="Pricing models" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2026, Peter Cotton.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
